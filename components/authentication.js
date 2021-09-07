@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Linking, TouchableOpacity} from 'react-native';
+
 
 
 export default function AuthPage(){
@@ -7,9 +8,10 @@ export default function AuthPage(){
         return (
             <View style={styles.authWrapper}>
                 <Image source={require('../assets/idoWhite.png')} style={styles.idoLogo} />
-
+                <Text style={styles.txtLogIn}>Log in to continue</Text>
                 <View style={styles.formWrapper}>
-                    <Text style={styles.txtStyle}>Log In with Email Address</Text>
+                 
+                    <Text style={styles.txtStyle}>Email Address</Text>
                     <TextInput style={styles.inputBox} placeholder={"Email Address"} />
                     <Text style={styles.txtStyle}>Password</Text>
                     <TextInput style={styles.inputBox} placeholder={"Password"} />
@@ -42,6 +44,10 @@ export default function AuthPage(){
                     </TouchableOpacity>
                 </View>
 
+                <View>
+                    {/* Don't have an account? Create an account */}
+                   
+                </View>
 
             </View>
         );
@@ -59,14 +65,22 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     idoLogo: {
-        marginTop: 80,
-        height: 150,
-        width: 150,
+        marginTop: 50,
+        height: 120,
+        width: 120,
         resizeMode: 'contain',
     },
     formWrapper: {
-        marginTop: 20,
         width: 300,
+        marginTop: 20,
+    },
+    txtLogIn:{
+        color: '#fff',
+        textAlign: 'left',
+        width: 280,
+        marginTop:30,
+        fontSize: 18,
+        fontWeight: 'bold',
     },
     inputBox: {
         padding: 12,
@@ -77,6 +91,7 @@ const styles = StyleSheet.create({
     txtStyle: {
         padding: 8,
         color: '#fff',
+        fontSize: 16,
     },
     logInWrapper: {
         backgroundColor: '#1381A2',
@@ -91,6 +106,7 @@ const styles = StyleSheet.create({
     },
     logInText:  {
         color: '#fff',
+        fontSize: 16,
     },
     authenticationWrapper:{
         flex: 1,
