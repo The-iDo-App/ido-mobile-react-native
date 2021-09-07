@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     },
     txtLogIn:{
         color: '#fff',
-        textAlign: 'left',
+        textAlign: 'center',
         width: 280,
         marginTop:30,
         fontSize: 18,
