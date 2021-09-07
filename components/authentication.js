@@ -21,6 +21,28 @@ export default function AuthPage(){
                     </TouchableOpacity>
                 </View>
                 
+                <View style={styles.orLogInWrapper}>
+                    <View style={styles.Line1}></View>
+                    <Text style={styles.orLogInText}>OR LOG IN WITH</Text>
+                    <View style={styles.Line2}></View>
+                </View>
+
+                {/*Authentication buttons to Google and Facebook*/}
+                <View style={styles.authenticationWrapper}>
+                    
+                    <TouchableOpacity>
+                        <View style={styles.facebookWrapper}>
+                            <Text style={styles.facebookText}>f</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <View style={styles.googleWrapper}>
+                            <Text style={styles.googleText}>G</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+
             </View>
         );
  
@@ -68,6 +90,59 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     logInText:  {
+        color: '#fff',
+    },
+    authenticationWrapper:{
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: 200,
+        marginTop: 10,
+    },
+    facebookWrapper: {
+        width: 60, 
+        height: 60,
+        backgroundColor: '#fff',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems:  'center',
+        borderRadius: 40,
+    },
+    googleWrapper: {
+        width: 60,
+        height: 60,
+        backgroundColor: '#fff',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 40,
+    },
+    facebookText: {
+        fontSize: 24,
+        color: '#1381A2',
+    },
+    googleText: {
+        fontSize: 24,
+        color: '#1381A2',
+    },
+    orLogInWrapper: {
+        flex: 1,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        flexDirection: 'row',
+        width: 300,
+    },
+    Line1: {
+        backgroundColor: '#fff',
+        width: 100,
+        height: 1,
+    },
+    Line2: {
+        backgroundColor: '#fff',
+        width: 100,
+        height: 1,
+    },
+    orLogInText:{
         color: '#fff',
     }
 });
