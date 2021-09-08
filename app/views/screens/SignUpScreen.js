@@ -113,7 +113,7 @@ export default function SignUpPage({navigation}) {
                         </View>
                         
                         {/*Log in button*/}
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=> navigation.navigate('CreateAccount')}>
                             <View style={STYLES.loginBtn}>
                                 <Text style={STYLES.loginText}>REGISTER</Text>
                             </View>

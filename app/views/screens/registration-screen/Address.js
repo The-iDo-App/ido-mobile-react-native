@@ -1,18 +1,16 @@
 import React from "react";
 import {View, Text} from 'react-native';
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import { ScrollView , TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function CreateAccount({navigation}) {
+export default function Address({navigation}) {
     return(
         <SafeAreaView>
             <ScrollView>
                 <View>
-                    <Text>Let's Set you up an account</Text>
+                    <Text>I live at</Text>
 
-                    <TouchableOpacity onPress={()=>navigation.navigate('Sexuality')}>
-                        <Text>Next</Text>
-                    </TouchableOpacity>
+                    
                     <TouchableOpacity onPress={()=>navigation.goBack()}>
                         <Text>Back</Text>
                     </TouchableOpacity>

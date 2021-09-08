@@ -11,6 +11,10 @@ import Home from './app/views/screens/HomeScreen';
 import Profile from './app/views/screens/ProfileScreen';
 import Messaging from './app/views/screens/MessagingScreen';
 import Settings from './app/views/screens/SettingsScreen';
+import CreateAccount from './app/views/screens/registration-screen/CreateAccount';
+import Sexuality from './app/views/screens/registration-screen/Sexuality';
+import EmploymentStatus from './app/views/screens/registration-screen/EmploymentStatus';
+import Address from './app/views/screens/registration-screen/Address';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -79,6 +83,10 @@ export default function App() {
                 <Stack.Screen name="SignIn" component={SignInPage} />
                 <Stack.Screen name="SignUp" component={SignUpPage} />
                 <Stack.Screen name="MainTab" component={MainTab} options={{headerShown: false}}/>
+                <Stack.Screen name="CreateAccount" component={CreateAccount}/>
+                <Stack.Screen name="Sexuality" component={Sexuality}/>
+                <Stack.Screen name="EmploymentStatus" component={EmploymentStatus}/>
+                <Stack.Screen name="Address" component={Address}/>
             </Stack.Navigator>
         </NavigationContainer>
       </AuthContext.Provider>
