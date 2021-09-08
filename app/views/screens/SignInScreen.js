@@ -117,7 +117,7 @@ export default function SignInPage({navigation}){
                         {/*Don' have an account? Create an account!*/}     
                         <View style={STYLES.noAccountWrap}>
                             <Text style={STYLES.noAccountText}>Don't have an account?&nbsp;</Text>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=> navigation.navigate('SignUp')}>
                                 <Text style={STYLES.noAccountLink}>Create an account!</Text>
                             </TouchableOpacity>
                         </View>               
