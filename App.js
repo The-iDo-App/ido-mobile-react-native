@@ -79,15 +79,17 @@ export default function App() {
   return (
       <AuthContext.Provider value={authContext}>
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{header:()=>null}}>
-                <Stack.Screen name="SignIn" component={SignInPage} />
-                <Stack.Screen name="SignUp" component={SignUpPage} />
-                <Stack.Screen name="MainTab" component={MainTab} options={{headerShown: false}}/>
+          <Stack.Navigator screenOptions={{headerShown: false}}>
+                <Stack.Screen name="SignIn" component={SignInPage}  title="SignIn"/>
+                <Stack.Screen name="SignUp" component={SignUpPage} title="SignUp" />
+                <Stack.Screen name="MainTab" component={MainTab} options={{headerShown: false}} title="MainTab"/>
+            <Stack.Group>
                 <Stack.Screen name="CreateAccount" component={CreateAccount}/>
                 <Stack.Screen name="Sexuality" component={Sexuality}/>
                 <Stack.Screen name="EmploymentStatus" component={EmploymentStatus}/>
                 <Stack.Screen name="Address" component={Address}/>
-            </Stack.Navigator>
+            </Stack.Group>
+          </Stack.Navigator>
         </NavigationContainer>
       </AuthContext.Provider>
   );
