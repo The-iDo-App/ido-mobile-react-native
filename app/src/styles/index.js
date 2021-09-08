@@ -51,7 +51,7 @@ const STYLES = StyleSheet.create({
         marginTop: 20,
     },
     forgotText:{
-        color: COLORS.yellow,
+        color: COLORS.lightPink,
         fontSize: 16,
     },
     loginBtn:{
@@ -64,6 +64,8 @@ const STYLES = StyleSheet.create({
     loginText:{
         textAlign: 'center',
         color: COLORS.white,
+        fontSize: 17,
+        
     },
     orWrap:{
         flex: 1,
@@ -125,10 +127,13 @@ const STYLES = StyleSheet.create({
         fontSize: 16,
     },
     noAccountLink:{
-        color: COLORS.yellow,
+        color: COLORS.lightPink,
         fontSize: 16,
     },
-    
+    errorMsg:{
+        color: COLORS.red,
+        fontSize: 12,
+    }
 })
 
 export default STYLES;

@@ -1,12 +1,16 @@
 
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Linking, TouchableOpacity, useColorScheme} from 'react-native';
+import { Alert, Text, View, Image, TextInput, TouchableOpacity, useColorScheme} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import STYLES from '../../src/styles';
 import {Feather, FontAwesome, AntDesign} from '@expo/vector-icons';
 import COLORS from '../../src/consts/colors';
+import Users from '../../model/users';
+import * as Animatable from 'react-native-animatable';
+import { AuthContext } from '../../../../components/context';
+
 
 export default function SignInPage({navigation}){
     
@@ -15,39 +19,92 @@ export default function SignInPage({navigation}){
         password: '',
         check_textInputChange: false,
         secureTextEntry: true,
+        isValidUser: true,
+        isValidPassword: true,
     });
 
+    const { signIn } = React.useContext(AuthContext);
+
     const textInputChange = (val) => {
-        if(val.length !== 0){
+        if(val.trim().length >= 4){
             setData({
-                ... data,
+                ...data,
                 email: val,
-                check_textInputChange: true
+                check_textInputChange: true,
+                isValidUser: true,
             });
         }
         else{
             setData({
-                ... data,
+                ...data,
                 email: val,
-                check_textInputChange: false
+                check_textInputChange: false,
+                isValidUser: false,
             });
         }
     }
 
     const handlePasswordChange = (val) => {
-        setData({
-            ... data, 
-            password: val
-        });
+        if(val.trim().length >= 8){
+            setData({
+                ...data, 
+                password: val,
+                isValidPassword: true,
+            });
+        }
+        else{
+            setData({
+                ...data, 
+                password: val,
+                isValidPassword: false,
+            }); 
+        }
     }
 
     const updateSecureTextEntry = () => {
         setData({
-            ... data,
+            ...data,
             secureTextEntry: !data.secureTextEntry,
         });
     }
 
+    const handleValidUser = (val) => {
+        if(val.trim().length >= 4 ){
+            setData({
+                ...data,
+                isValidUser: true
+            });
+        }
+        else{
+            setData({
+                ...data,
+                isValidUser: false
+            });
+        }
+    }
+
+    /* for validation to for email and pass, di ko magawa huhu
+    const loginHandle =(email, password) => {
+        const foundUser = Users.filter( item => {
+            return email = item.email && password === item.password;
+        });
+
+        if(data.email.length === 0 || data.password.length === 0){
+            Alert.alert('Invalid input', 'Email or password field cannot be empty',[
+                {text:'Okay'}
+            ]);
+            return;
+        }
+
+        if(foundUser.length === 0){
+            Alert.alert('Invalid user','Email address or password is incorrect', [
+                {text: 'Okay'}
+            ]);
+            return;
+        }
+
+       signIn(foundUser);
+    }*/
         return (
             <SafeAreaView style={STYLES.authWrapper}>
                <ScrollView showsVerticalScrollIndicator={false}>
@@ -64,11 +121,21 @@ export default function SignInPage({navigation}){
                         {/*email address*/}
                         <View style={STYLES.action}>
                             <FontAwesome name="envelope" color="#8999a8" size={20} />
-                            <TextInput placeholder="example@email.com" style={STYLES.textInput} onChangeText={(val)=>textInputChange(val)} />
+                            <TextInput placeholder="example@email.com" 
+                                       style={STYLES.textInput}
+                                       onChangeText={(val)=>textInputChange(val)}
+                                       onEndEditing={(e)=>handleValidUser(e.nativeEvent.text)} />
                             {data.check_textInputChange ?
                             <Feather name="check-circle" color="#77BC7E" size={20} />
                             : null}
                         </View>
+                        {/*email address error message*/}
+                        {data.isValidUser ? null :
+                        <Animatable.View animation="fadeInLeft" duration={500}>
+                                <Text style={STYLES.errorMsg}>You must enter a valid email address</Text>
+                        </Animatable.View>
+                        }
+
                         {/*password*/}
                         <View style={STYLES.action}>
                             <FontAwesome name="lock" color="#8999a8" size={30} />
@@ -83,6 +150,15 @@ export default function SignInPage({navigation}){
                             
                             
                         </View>
+                        {/*password error message*/}
+                        {data.isValidPassword ? null :
+                            <Animatable.View animation="fadeInLeft" duration={500}>
+                                <Text style={STYLES.errorMsg}>You must enter a valid password</Text>
+                            </Animatable.View>
+                        }
+                        
+
+
                         {/*forget password*/}
                         <View style={STYLES.forgotWrap}>
                             <TouchableOpacity>
@@ -90,7 +166,7 @@ export default function SignInPage({navigation}){
                             </TouchableOpacity>
                         </View>
                         {/*Log in button*/}
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={/*()=> {signIn()}*/ () => navigation.navigate('MainTab')}>
                             <View style={STYLES.loginBtn}>
                                 <Text style={STYLES.loginText}>LOG IN</Text>
                             </View>

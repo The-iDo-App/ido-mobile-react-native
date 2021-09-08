@@ -5,8 +5,9 @@ const COLORS = {
     lightPink: '#FF9B99',
     white: '#fff',
     lightYellow: '#EFD9A1',
-    background: '#FDE7E8',
-    yellow: '#EBB453'
+    background: '#fff',
+    yellow: '#B1822E',
+    red: '#FF3131'
 };
 
 export default COLORS;
