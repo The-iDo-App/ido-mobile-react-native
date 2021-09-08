@@ -5,131 +5,87 @@ import COLORS from "../consts/colors";
 const STYLES = StyleSheet.create({
     authWrapper: {
         flex: 1,
-        backgroundColor: '#F2909A',
+        backgroundColor: COLORS.background,
         paddingVertical: 30,
         paddingHorizontal: 20,
         alignItems: 'center',
-        justifyContent: 'center',
         height: 'auto',
     },
-    idoLogo: {
-        marginTop: 30,
-        height: 120,
-        width: 120,
-        resizeMode: 'contain',
-        alignSelf: 'center',
-    },
-    formWrapper: {
+    logoWrapper: {
+        paddingVertical: 20,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
         width: 300,
-        marginTop: 20,
     },
-    txtLogIn: {
-        color: COLORS.white,
-        textAlign: 'center',
-        width: 280,
-        marginTop: 30,
+    logo: {
+        width: 100,
+        height:210,
+       
+    },
+    textWrapper:{
+        marginBottom: 5,
+    },
+    textText: {
         fontSize: 18,
-        fontWeight: 'normal',
+        color: '#889999',
+        textAlign: 'center',
     },
-    inputBox: {
-        padding: 12,
-        paddingHorizontal: 16,
-        backgroundColor: COLORS.white,
-        borderRadius: 40,
-        color: COLORS.blue,
-    },
-    txtStyle: {
-        padding: 8,
-        color: COLORS.white,
-        fontSize: 16,
-    },
-    logInWrapper: {
-        backgroundColor: COLORS.blue,
-        width: 300,
-        padding: 12,
-        paddingHorizontal: 20,
-        borderRadius: 40,
-        marginTop: 30,
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    logInText: {
-        color: COLORS.white,
-        fontSize: 16,
-    },
-    authenticationWrapper: {
+    action:{
         flex: 1,
         flexDirection: 'row',
+        alignItems:'center',
         justifyContent: 'space-around',
-        width: 200,
+        width: 300,
+    },
+    textInput: {
+        borderBottomWidth: 0.5,
+        width: 220,
+        borderBottomColor: COLORS.grey,
+        color: COLORS.blue,
+        fontSize: 16,
+        padding: 5,
+    },
+    forgotWrap:{
+        width: 230,
         alignSelf: 'center',
-        marginTop: 10,
+        marginBottom: 10,
     },
-    facebookWrapper: {
-        width: 60,
-        height: 60,
-        backgroundColor: COLORS.white,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+    forgotText:{
+        color: COLORS.yellow,
+        fontSize: 16,
+    },
+    loginBtn:{
+        backgroundColor: COLORS.blue,
+        padding: 14,
         borderRadius: 40,
-    },
-    googleWrapper: {
-        width: 60,
-        height: 60,
-        backgroundColor: COLORS.white,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 40,
-    },
-    facebookText: {
-        fontSize: 24,
-        color: COLORS.blue,
-    },
-    googleText: {
-        fontSize: 24,
-        color: COLORS.blue,
-    },
-    orLogInWrapper: {
-        flex: 1,
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        flexDirection: 'row',
-        width: 300,
+        paddingVertical: 10,
         marginTop: 20,
     },
-    Line1: {
-        backgroundColor: COLORS.white,
-        width: 80,
-        height: 1,
-    },
-    Line2: {
-        backgroundColor: COLORS.white,
-        width: 80,
-        height: 1,
-    },
-    orLogInText: {
+    loginText:{
+        textAlign: 'center',
         color: COLORS.white,
     },
-    paginationWrapper: {
+    orWrap:{
         flex: 1,
         flexDirection: 'row',
-        width: 300,
-        justifyContent: 'center',
         alignItems: 'center',
-        alignContent: 'center',
-        marginTop: 40,
+        justifyContent: 'space-around',
     },
-    noAccountText:{
-        color: COLORS.white,
-        opacity: 0.5,
+    line1:{
+        height: 0.5,
+        width: 80,
+        backgroundColor: COLORS.grey,
     },
-    createAccountText:{
-        color: COLORS.white,
-
-    }
+    orText:{
+        color: COLORS.grey,
+    },
+    line2:{
+        height: 0.5,
+        width: 80,
+        backgroundColor: COLORS.grey,
+    },
+    
 })
 
 export default STYLES;
