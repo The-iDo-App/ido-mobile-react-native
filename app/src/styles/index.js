@@ -13,7 +13,7 @@ const STYLES = StyleSheet.create({
     },
     logoWrapper: {
         paddingVertical: 20,
-        flex: 1,
+        flex: 1.5,
         justifyContent: 'center',
         alignItems: 'center',
         width: 300,
@@ -32,24 +32,23 @@ const STYLES = StyleSheet.create({
         textAlign: 'center',
     },
     action:{
+        marginTop: 10,
         flex: 1,
         flexDirection: 'row',
         alignItems:'center',
-        justifyContent: 'space-around',
+        borderBottomWidth: 0.5,
         width: 300,
+        borderBottomColor: COLORS.grey,
     },
     textInput: {
-        borderBottomWidth: 0.5,
-        width: 220,
-        borderBottomColor: COLORS.grey,
+        width: 280,
         color: COLORS.blue,
         fontSize: 16,
-        padding: 5,
+        padding: 10,
     },
     forgotWrap:{
-        width: 230,
-        alignSelf: 'center',
-        marginBottom: 10,
+        width: 300,
+        marginTop: 20,
     },
     forgotText:{
         color: COLORS.yellow,
@@ -71,6 +70,7 @@ const STYLES = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
+        marginTop: 20,
     },
     line1:{
         height: 0.5,
@@ -84,6 +84,49 @@ const STYLES = StyleSheet.create({
         height: 0.5,
         width: 80,
         backgroundColor: COLORS.grey,
+    },
+    authenticationWrap: {
+        flex: 1, 
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width:220,
+        alignItems: 'center',
+        alignSelf: 'center',
+        marginTop: 20,
+    },
+    fbBtn:{
+        backgroundColor: '#E0E0E0',
+        height: 60,
+        width: 70,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 16,
+        borderRadius: 40
+    },
+    googleBtn : {
+         backgroundColor: '#E0E0E0',
+        height: 60,
+        width: 70,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 14,
+        borderRadius: 40
+    },
+    noAccountWrap:{
+        flex: 1,
+        flexDirection: 'row',
+        alignSelf: 'center',
+        marginTop: 40,
+    },
+    noAccountText:{
+        color: COLORS.grey,
+        fontSize: 16,
+    },
+    noAccountLink:{
+        color: COLORS.yellow,
+        fontSize: 16,
     },
     
 })
