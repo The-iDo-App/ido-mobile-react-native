@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ActivityIndicator, View } from 'react-native';
-import { AuthContext } from '../components/context';
+import {AuthContext} from './components/context';
 import SignInPage from './app/views/screens/SignInScreen';
 import SignUpPage from './app/views/screens/SignUpScreen';
 import Home from './app/views/screens/HomeScreen';

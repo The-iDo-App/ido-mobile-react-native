@@ -9,7 +9,7 @@ import {Feather, FontAwesome, AntDesign} from '@expo/vector-icons';
 import COLORS from '../../src/consts/colors';
 import Users from '../../model/users';
 import * as Animatable from 'react-native-animatable';
-import { AuthContext } from '../../../../components/context';
+import { AuthContext } from '../../../components/context';
 
 
 export default function SignInPage({navigation}){

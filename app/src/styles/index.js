@@ -133,7 +133,117 @@ const STYLES = StyleSheet.create({
     errorMsg:{
         color: COLORS.red,
         fontSize: 12,
-    }
+    },
+    regWrapper:{
+        flex: 1,
+        backgroundColor: COLORS.white,
+    },
+    header:{
+        display: 'flex',
+        paddingVertical: 20,
+        paddingHorizontal: 20,
+        backgroundColor: COLORS.lightYellow,
+        borderBottomWidth: 0.5,
+        borderBottomColor: COLORS.grey,
+    },
+    headerLogo:{
+        height: 50,
+        width: 50,
+        backgroundColor: 'transparent',
+    },
+    createAccountWrap:{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: 40,
+        paddingHorizontal: 20,
+    },
+    createAccountTitleWrap:{
+        flex: 1, 
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    createAccountTitleText:{
+        color: COLORS.grey,
+        fontSize: 20,
+        fontWeight: '600',
+    }, 
+    createAccountDesText:{
+        marginTop: 20,
+        textAlign: 'center',
+        fontSize: 12,
+        fontWeight: '400',
+        color: COLORS.grey,
+    },
+    choosePhotoWrapper:{
+        marginTop: 50,
+        display: 'flex',
+        flex: 3, 
+        padding: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    imageWrapper:{
+        marginTop: 40,
+        alignSelf: 'center',
+        width: 180,
+        height: 180, 
+        borderRadius: "50%",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        borderWidth: 3,
+        borderColor: COLORS.blue,
+        padding: 20,
+    },
+    cameraButton:{ 
+        backgroundColor: COLORS.white,
+        borderWidth: 1,
+        borderColor: COLORS.grey,
+        borderRadius: '50%',
+        flex: 1, 
+        justifyContent: "center",
+        alignItems:'center',
+        width:60,
+        padding: 10,
+        left: '100%',
+        top: '150%',
+    },
+    imagePhoto : {
+        flex: 1,
+        width: 135,
+        height: 150,
+        padding: 20,
+        alignSelf: 'center',
+        borderRadius: '50%',
+        borderWidth: 1,
+        borderColor: 'transparent',
+    
+        overflow: 'hidden'
+    },
+    centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+ 
 })
 
 export default STYLES;
