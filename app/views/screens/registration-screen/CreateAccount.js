@@ -1,13 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
-import {View, Text, ImageBackground, Image} from 'react-native';
+import React, { useState } from "react";
+import {View, Text, ImageBackground, Image, FlatList} from 'react-native';
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Button, Modal, Portal , Provider} from 'react-native-paper';
 import { SafeAreaView } from "react-native-safe-area-context";
 import STYLES from '../../../src/styles';
 import {Feather, FontAwesome, AntDesign} from '@expo/vector-icons';
 import COLORS from "../../../src/consts/colors";
-import { Avatar } from "react-native-elements";
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 
 
@@ -15,13 +15,21 @@ import { Avatar } from "react-native-elements";
 export default function CreateAccount({navigation}) {
 
   const [visible, setVisible] = React.useState(false);
+  const [image,  setImage] = React.useState('');
+
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
   const containerStyle = {backgroundColor: 'white', padding: 10};
   
- 
+ const takePhotoFromCamera = () => {
 
+ }
+ 
+ const chooseFromLibrary = () => {
+    
+ }
+ 
     return(
         <SafeAreaView style={STYLES.regWrapper}>
             <StatusBar />
@@ -76,12 +84,34 @@ export default function CreateAccount({navigation}) {
                             <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={STYLES.modalWrapper} children={true}>
                                 
                                 <View style={STYLES.modalHeader}>
-                                    <Text style={STYLES.modalHeaderText}>Example Modal</Text>
+                                    <Text style={STYLES.modalHeaderText}>Upload avatar or photo</Text>
                                     <TouchableOpacity onPress={hideModal}>
                                         <Text style={STYLES.modalHeaderCloseButton}>&times;</Text>
                                     </TouchableOpacity>
                                 </View>
-                                
+
+                                <View>
+                                    <ScrollView showsVerticalScrollIndicator={false}>
+                                        <View style={STYLES.modalContent}>
+                                            <View style={STYLES.uploadButtons}>
+                                                <TouchableOpacity onPress={()=>takePhotoFromCamera()}>
+                                                    <View style={STYLES.cameraUploadButton}>
+                                                            <AntDesign name="camera" size={18} color={'#B4CFE4'} />
+                                                            <Text style={STYLES.cameraUploadButtonText}>&nbsp;Take photo</Text>
+                                                    </View>
+                                                </TouchableOpacity>
+                                                <TouchableOpacity onPress={()=>chooseFromLibrary()}>
+                                                    <View style={STYLES.cameraUploadButton}>
+                                                            <FontAwesome name="image" size={18} color={'#B4CFE4'}/>
+                                                            <Text style={STYLES.cameraUploadButtonText}>&nbsp;Upload photo</Text>
+                                                    </View>
+                                                </TouchableOpacity>
+                                            </View>
+                                            {/*GALLERY OF AVATARS*/}
+
+                                        </View>
+                                    </ScrollView>
+                                </View>
                                                             
                                
                           

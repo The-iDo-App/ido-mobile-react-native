@@ -215,7 +215,7 @@ const STYLES = StyleSheet.create({
    },
    modalWrapper:{
        flex: 3,
-       padding: 10,
+       padding: 20,
        overflow: 'hidden',
        flexWrap: 'nowrap',
        alignContent: 'center',
@@ -224,17 +224,38 @@ const STYLES = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-between',
       padding: 5,
-      alignItems: 'center'
+      margin: 5,
    },
    modalHeaderText:{
        color: COLORS.blue,
        fontSize: 16,
    },
    modalHeaderCloseButton:{
-      fontSize: 20,
-      color: 'rgba(0,0,0,0.5)'
+      fontSize: 16
    },
-
+   modalContent:{
+    margin: 5
+   },
+   uploadButtons:{
+       marginTop: 10,
+       flex:1,
+       flexDirection: 'row',
+       justifyContent: 'space-between',
+       alignItems: 'center',
+   },
+   cameraUploadButton:{
+       flex: 1,
+       flexDirection: 'row',
+       padding: 12,
+       backgroundColor: COLORS.blue,
+       width: 135,
+       margin: 5,
+       justifyContent: 'center',
+       alignItems: 'center',
+   },
+   cameraUploadButtonText:{
+       color:'#B4CFE4',
+   }
 })
 
 export default STYLES;
