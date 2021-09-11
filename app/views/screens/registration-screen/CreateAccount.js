@@ -11,7 +11,6 @@ import COLORS from "../../../src/consts/colors";
 
 
 
-
 export default function CreateAccount({navigation}) {
 
   const [visible, setVisible] = React.useState(false);
@@ -30,7 +29,7 @@ export default function CreateAccount({navigation}) {
                 <Image source={require('../../../src/assets/logo1.png')} resizeMode="contain" style={STYLES.headerLogo} />
             </View>
             
-           
+        
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={STYLES.createAccountWrap}>
                     <View style={STYLES.createAccountTitleWrap}>

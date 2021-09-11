@@ -1,6 +1,6 @@
 
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import { Alert, Text, View, Image, TextInput, TouchableOpacity, useColorScheme} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -11,9 +11,27 @@ import Users from '../../model/users';
 import * as Animatable from 'react-native-animatable';
 import { AuthContext } from '../../../components/context';
 
-
 export default function SignInPage({navigation}){
+    const [username,setUsername] = useState('');
+    const [password,setPassword] = useState('');
     
+    const handleUserlogin = async ()=>{
+        const res = await fetch(`http://192.168.0.107:5000/api/logins/email/${username}`,{
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({password})
+        });
+        const data = await res.json();
+        console.log(data);
+        if(data)
+        navigation.navigate('MainTab');
+        else
+            return Alert.alert("Incorrect username or password!")
+    }
+
     const [data, setData] = React.useState({
         email: '',
         password: '',
@@ -123,7 +141,10 @@ export default function SignInPage({navigation}){
                             <FontAwesome name="envelope" color="#8999a8" size={20} />
                             <TextInput placeholder="example@email.com" 
                                        style={STYLES.textInput}
-                                       onChangeText={(val)=>textInputChange(val)}
+                                       onChangeText={(val)=>{
+                                            textInputChange(val)
+                                            setUsername(val)
+                                        }}
                                        onEndEditing={(e)=>handleValidUser(e.nativeEvent.text)} />
                             {data.check_textInputChange ?
                             <Feather name="check-circle" color="#77BC7E" size={20} />
@@ -139,7 +160,11 @@ export default function SignInPage({navigation}){
                         {/*password*/}
                         <View style={STYLES.action}>
                             <FontAwesome name="lock" color="#8999a8" size={30} />
-                            <TextInput secureTextEntry={data.secureTextEntry ? true : false} placeholder="Password" style={STYLES.textInput} onChangeText={(val)=>handlePasswordChange(val)}/>
+                            <TextInput secureTextEntry={data.secureTextEntry ? true : false} placeholder="Password" style={STYLES.textInput} 
+                            onChangeText={(val)=>  {
+                                handlePasswordChange(val)
+                                setPassword(val)
+                            }}/>
                             <TouchableOpacity onPress={updateSecureTextEntry}>
                                 {data.secureTextEntry ?
                                     <Feather name="eye-off" color="#91C2D0" size={20}/>
@@ -166,7 +191,7 @@ export default function SignInPage({navigation}){
                             </TouchableOpacity>
                         </View>
                         {/*Log in button*/}
-                        <TouchableOpacity onPress={/*()=> {signIn()}*/ () => navigation.navigate('MainTab')}>
+                        <TouchableOpacity onPress={/*()=> {signIn()}*/ () => handleUserlogin(username,password)}>
                             <View style={STYLES.loginBtn}>
                                 <Text style={STYLES.loginText}>LOG IN</Text>
                             </View>

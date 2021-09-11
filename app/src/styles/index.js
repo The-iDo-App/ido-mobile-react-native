@@ -20,10 +20,10 @@ const STYLES = StyleSheet.create({
     },
     logo: {
         width: 100,
-        height:210,
-       
+        height: 210,
+
     },
-    textWrapper:{
+    textWrapper: {
         marginBottom: 5,
     },
     textText: {
@@ -31,11 +31,11 @@ const STYLES = StyleSheet.create({
         color: '#889999',
         textAlign: 'center',
     },
-    action:{
+    action: {
         marginTop: 10,
         flex: 1,
         flexDirection: 'row',
-        alignItems:'center',
+        alignItems: 'center',
         borderBottomWidth: 0.5,
         width: 300,
         borderBottomColor: COLORS.grey,
@@ -46,57 +46,57 @@ const STYLES = StyleSheet.create({
         fontSize: 16,
         padding: 10,
     },
-    forgotWrap:{
+    forgotWrap: {
         width: 300,
         marginTop: 20,
     },
-    forgotText:{
+    forgotText: {
         color: COLORS.lightPink,
         fontSize: 16,
     },
-    loginBtn:{
+    loginBtn: {
         backgroundColor: COLORS.blue,
         padding: 14,
-        borderRadius: 40,
+        borderRadius: 50,
         paddingVertical: 10,
         marginTop: 20,
     },
-    loginText:{
+    loginText: {
         textAlign: 'center',
         color: COLORS.white,
         fontSize: 17,
-        
+
     },
-    orWrap:{
+    orWrap: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
         marginTop: 20,
     },
-    line1:{
+    line1: {
         height: 0.5,
         width: 80,
         backgroundColor: COLORS.grey,
     },
-    orText:{
+    orText: {
         color: COLORS.grey,
     },
-    line2:{
+    line2: {
         height: 0.5,
         width: 80,
         backgroundColor: COLORS.grey,
     },
     authenticationWrap: {
-        flex: 1, 
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',
-        width:220,
+        width: 220,
         alignItems: 'center',
         alignSelf: 'center',
         marginTop: 20,
     },
-    fbBtn:{
+    fbBtn: {
         backgroundColor: '#E0E0E0',
         height: 60,
         width: 70,
@@ -104,90 +104,90 @@ const STYLES = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: 16,
-        borderRadius: 40
+        borderRadius: 60 / 2,
     },
-    googleBtn : {
-         backgroundColor: '#E0E0E0',
+    googleBtn: {
+        backgroundColor: '#E0E0E0',
         height: 60,
         width: 70,
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         padding: 14,
-        borderRadius: 40
+        borderRadius: 60 / 2
     },
-    noAccountWrap:{
+    noAccountWrap: {
         flex: 1,
         flexDirection: 'row',
         alignSelf: 'center',
         marginTop: 40,
     },
-    noAccountText:{
+    noAccountText: {
         color: COLORS.grey,
         fontSize: 16,
     },
-    noAccountLink:{
+    noAccountLink: {
         color: COLORS.lightPink,
         fontSize: 16,
     },
-    errorMsg:{
+    errorMsg: {
         color: COLORS.red,
         fontSize: 12,
     },
-    regWrapper:{
+    regWrapper: {
         flex: 1,
         backgroundColor: COLORS.white,
     },
-    header:{
+    header: {
         display: 'flex',
         paddingVertical: 20,
         paddingHorizontal: 20,
         borderBottomWidth: 0.5,
         borderBottomColor: COLORS.grey,
     },
-    headerLogo:{
+    headerLogo: {
         height: 50,
         width: 50,
         backgroundColor: 'transparent',
     },
-    createAccountWrap:{
+    createAccountWrap: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         paddingVertical: 40,
         paddingHorizontal: 20,
     },
-    createAccountTitleWrap:{
-        flex: 1, 
+    createAccountTitleWrap: {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    createAccountTitleText:{
+    createAccountTitleText: {
         color: COLORS.grey,
         fontSize: 20,
         fontWeight: '600',
-    }, 
-    createAccountDesText:{
+    },
+    createAccountDesText: {
         marginTop: 20,
         textAlign: 'center',
         fontSize: 12,
         fontWeight: '400',
         color: COLORS.grey,
     },
-    choosePhotoWrapper:{
+    choosePhotoWrapper: {
         marginTop: 50,
         display: 'flex',
-        flex: 3, 
+        flex: 3,
         padding: 20,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    imageWrapper:{
+    imageWrapper: {
         marginTop: 40,
         alignSelf: 'center',
         width: 180,
-        height: 180, 
-        borderRadius: "50%",
+        height: 180,
+        borderRadius: 50,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -196,29 +196,29 @@ const STYLES = StyleSheet.create({
         borderColor: COLORS.blue,
         padding: 20,
     },
-    cameraButton:{ 
+    cameraButton: {
         backgroundColor: COLORS.white,
         borderWidth: 1,
         borderColor: COLORS.grey,
-        borderRadius: '50%',
-        flex: 1, 
+        borderRadius: 60 / 2,
+        flex: 1,
         justifyContent: "center",
-        alignItems:'center',
-        width:60,
+        alignItems: 'center',
+        width: 60,
         padding: 10,
         left: '100%',
         top: '150%',
     },
-    imagePhoto : {
+    imagePhoto: {
         flex: 1,
         width: 135,
         height: 150,
         padding: 20,
         alignSelf: 'center',
-        borderRadius: '50%',
+        borderRadius: 150 / 2,
         borderWidth: 1,
         borderColor: 'transparent',
-    
+
         overflow: 'hidden'
     },
 
