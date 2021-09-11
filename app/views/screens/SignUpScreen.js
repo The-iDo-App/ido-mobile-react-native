@@ -21,14 +21,14 @@ export default function SignUpPage({navigation}) {
     const textInputChange = (val) => {
         if(val.length !== 0){
             setData({
-                ... data,
+                ...data,
                 email: val,
                 check_textInputChange: true
             });
         }
         else{
             setData({
-                ... data,
+                ...data,
                 email: val,
                 check_textInputChange: false
             });
@@ -37,28 +37,28 @@ export default function SignUpPage({navigation}) {
 
     const handlePasswordChange = (val) => {
         setData({
-            ... data, 
+            ...data, 
             password: val
         });
     }
 
        const handleConfirmPasswordChange = (val) => {
         setData({
-            ... data, 
+            ...data, 
             confirmPassword: val
         });
     }
 
     const updateSecureTextEntry = () => {
         setData({
-            ... data,
+            ...data,
             secureTextEntry: !data.secureTextEntry,
         });
     }
 
     const updateConfirmSecureTextEntry = () => {
         setData({
-            ... data,
+            ...data,
             confirmSecureTextEntry: !data.confirmSecureTextEntry,
         });
     }
@@ -128,12 +128,12 @@ export default function SignUpPage({navigation}) {
                         <View style={STYLES.authenticationWrap}>
                             <TouchableOpacity>
                                 <View style={STYLES.fbBtn}>
-                                    <FontAwesome name="facebook-f" color="#4267B2" size={35}></FontAwesome>
+                                    <FontAwesome name="facebook-f" color="#4267B2" size={30}></FontAwesome>
                                 </View>
                             </TouchableOpacity>
                              <TouchableOpacity>
                                 <View style={STYLES.googleBtn}>
-                                    <AntDesign name="google" color="#DB4437" size={35}></AntDesign>
+                                    <AntDesign name="google" color="#DB4437" size={30}></AntDesign>
                                 </View>
                             </TouchableOpacity>
                         </View>

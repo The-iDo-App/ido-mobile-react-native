@@ -38,46 +38,10 @@ function MainTab(){
 
 
 export default function App() {
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [userToken, setUserToken] = React.useState(null);
-  
-
-    const authContext = React.useMemo(() => ({
-    signIn: () => {
-      setUserToken('fgkj');
-      setIsLoading(false);
-      
-    },
-    signOut: () => {
-      setUserToken(null);
-      setIsLoading(false);
-    },
-    signUp: () => {
-      setUserToken('fgkj');
-      setIsLoading(false);
-    },
  
-  }), []);
-
-  useEffect(() => {
-    setTimeout(async() => {
-      setIsLoading(false);
-      // console.log('user token: ', userToken);
-    }, 1000);
-  }, []);
-
-
-  if(isLoading){
-    return(
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <ActivityIndicator size='large'/>
-      </View>
-    )
-  }
-
 
   return (
-      <AuthContext.Provider value={authContext}>
+      
         <NavigationContainer>
           <Stack.Navigator screenOptions={{headerShown: false}}>
                 <Stack.Screen name="SignIn" component={SignInPage}  title="SignIn"/>
@@ -91,7 +55,7 @@ export default function App() {
             </Stack.Group>
           </Stack.Navigator>
         </NavigationContainer>
-      </AuthContext.Provider>
+     
   );
 }
 

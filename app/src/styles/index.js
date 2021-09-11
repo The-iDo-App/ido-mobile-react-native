@@ -6,7 +6,7 @@ const STYLES = StyleSheet.create({
     authWrapper: {
         flex: 1,
         backgroundColor: COLORS.background,
-        paddingVertical: 30,
+        paddingVertical: 20,
         paddingHorizontal: 20,
         alignItems: 'center',
         height: 'auto',
@@ -19,8 +19,8 @@ const STYLES = StyleSheet.create({
         width: 300,
     },
     logo: {
-        width: 100,
-        height:210,
+        width: 200,
+        height:200,
        
     },
     textWrapper:{
@@ -41,7 +41,7 @@ const STYLES = StyleSheet.create({
         borderBottomColor: COLORS.grey,
     },
     textInput: {
-        width: 280,
+        width: 250,
         color: COLORS.blue,
         fontSize: 16,
         padding: 10,
@@ -99,22 +99,22 @@ const STYLES = StyleSheet.create({
     fbBtn:{
         backgroundColor: '#E0E0E0',
         height: 60,
-        width: 70,
+        width: 60,
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         padding: 16,
-        borderRadius: 40
+        borderRadius: 100
     },
     googleBtn : {
          backgroundColor: '#E0E0E0',
         height: 60,
-        width: 70,
+        width: 60,
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         padding: 14,
-        borderRadius: 40
+        borderRadius: 100
     },
     noAccountWrap:{
         flex: 1,
@@ -175,52 +175,65 @@ const STYLES = StyleSheet.create({
         color: COLORS.grey,
     },
     choosePhotoWrapper:{
-        marginTop: 50,
+        marginTop: 10,
         display: 'flex',
-        flex: 3, 
-        padding: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
+        paddingHorizontal: 20,
+        paddingVertical: 30,
+        height: 300,
+        width: 300,
     },
     imageWrapper:{
-        marginTop: 40,
         alignSelf: 'center',
         width: 180,
         height: 180, 
-        borderRadius: "50%",
-        display: 'flex',
+        borderRadius: 100,
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'absolute',
         borderWidth: 3,
         borderColor: COLORS.blue,
-        padding: 20,
+        overflow: "hidden",
+        margin: 0
     },
-    cameraButton:{ 
-        backgroundColor: COLORS.white,
-        borderWidth: 1,
-        borderColor: COLORS.grey,
-        borderRadius: '50%',
-        flex: 1, 
-        justifyContent: "center",
-        alignItems:'center',
-        width:60,
-        padding: 10,
-        left: '100%',
-        top: '150%',
-    },
-    imagePhoto : {
-        flex: 1,
-        width: 135,
-        height: 150,
-        padding: 20,
-        alignSelf: 'center',
-        borderRadius: '50%',
-        borderWidth: 1,
-        borderColor: 'transparent',
-    
-        overflow: 'hidden'
-    },
+   addButton: {
+       marginTop: 20,
+       borderRadius: 100, 
+       borderColor: COLORS.blue, 
+       borderWidth: 1.5, 
+       flex: 1, 
+       flexDirection: 'row',
+       justifyContent: 'center',
+       alignItems: 'center',
+       padding: 16,
+       backgroundColor: COLORS.white, 
+       margin: 10, 
+       width:250, 
+       alignSelf: 'center',
+       
+   },
+   addText:{
+        color: COLORS.blue,
+   },
+   modalWrapper:{
+       flex: 3,
+       padding: 10,
+       overflow: 'hidden',
+       flexWrap: 'nowrap',
+       alignContent: 'center',
+   },
+   modalHeader:{
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      padding: 5,
+      alignItems: 'center'
+   },
+   modalHeaderText:{
+       color: COLORS.blue,
+       fontSize: 16,
+   },
+   modalHeaderCloseButton:{
+      fontSize: 20,
+      color: 'rgba(0,0,0,0.5)'
+   },
 
 })
 

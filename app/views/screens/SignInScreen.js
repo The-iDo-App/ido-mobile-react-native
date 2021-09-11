@@ -9,7 +9,7 @@ import {Feather, FontAwesome, AntDesign} from '@expo/vector-icons';
 import COLORS from '../../src/consts/colors';
 import Users from '../../model/users';
 import * as Animatable from 'react-native-animatable';
-import { AuthContext } from '../../../components/context';
+
 
 
 export default function SignInPage({navigation}){
@@ -19,11 +19,9 @@ export default function SignInPage({navigation}){
         password: '',
         check_textInputChange: false,
         secureTextEntry: true,
-        isValidUser: true,
-        isValidPassword: true,
+      
     });
 
-    const { signIn } = React.useContext(AuthContext);
 
     const textInputChange = (val) => {
         if(val.trim().length >= 4){
@@ -31,7 +29,6 @@ export default function SignInPage({navigation}){
                 ...data,
                 email: val,
                 check_textInputChange: true,
-                isValidUser: true,
             });
         }
         else{
@@ -39,7 +36,6 @@ export default function SignInPage({navigation}){
                 ...data,
                 email: val,
                 check_textInputChange: false,
-                isValidUser: false,
             });
         }
     }
@@ -83,28 +79,6 @@ export default function SignInPage({navigation}){
         }
     }
 
-    /* for validation to for email and pass, di ko magawa huhu
-    const loginHandle =(email, password) => {
-        const foundUser = Users.filter( item => {
-            return email = item.email && password === item.password;
-        });
-
-        if(data.email.length === 0 || data.password.length === 0){
-            Alert.alert('Invalid input', 'Email or password field cannot be empty',[
-                {text:'Okay'}
-            ]);
-            return;
-        }
-
-        if(foundUser.length === 0){
-            Alert.alert('Invalid user','Email address or password is incorrect', [
-                {text: 'Okay'}
-            ]);
-            return;
-        }
-
-       signIn(foundUser);
-    }*/
         return (
             <SafeAreaView style={STYLES.authWrapper}>
                <ScrollView showsVerticalScrollIndicator={false}>
@@ -181,12 +155,12 @@ export default function SignInPage({navigation}){
                         <View style={STYLES.authenticationWrap}>
                             <TouchableOpacity>
                                 <View style={STYLES.fbBtn}>
-                                    <FontAwesome name="facebook-f" color="#4267B2" size={35}></FontAwesome>
+                                    <FontAwesome name="facebook-f" color="#4267B2" size={30}></FontAwesome>
                                 </View>
                             </TouchableOpacity>
                              <TouchableOpacity>
                                 <View style={STYLES.googleBtn}>
-                                    <AntDesign name="google" color="#DB4437" size={35}></AntDesign>
+                                    <AntDesign name="google" color="#DB4437" size={30}></AntDesign>
                                 </View>
                             </TouchableOpacity>
                         </View>
