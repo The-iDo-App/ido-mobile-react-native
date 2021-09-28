@@ -219,22 +219,27 @@ const STYLES = StyleSheet.create({
        overflow: 'hidden',
        flexWrap: 'nowrap',
        alignContent: 'center',
+      
    },
    modalHeader:{
       flexDirection: 'row',
       justifyContent: 'space-between',
-      padding: 5,
-      margin: 5,
+      alignItems: 'center',
+
+     
    },
    modalHeaderText:{
        color: COLORS.blue,
        fontSize: 16,
+       padding: 5
+     
    },
    modalHeaderCloseButton:{
       fontSize: 16
    },
    modalContent:{
-    margin: 5
+    overflow: 'scroll',
+    minHeight: 400,
    },
    uploadButtons:{
        marginTop: 10,
@@ -248,14 +253,54 @@ const STYLES = StyleSheet.create({
        flexDirection: 'row',
        padding: 12,
        backgroundColor: COLORS.blue,
-       width: 135,
+       width: 80,
+       height:80,
        margin: 5,
        justifyContent: 'center',
        alignItems: 'center',
    },
    cameraUploadButtonText:{
        color:'#B4CFE4',
-   }
+   },
+   avatarGallery:{
+       flex:1,
+       flexDirection: 'row',
+       justifyContent: 'space-between',
+       alignItems: 'center',
+   },
+   avatarItemStyle:{
+       flex:1,
+       flexDirection: 'row',
+       borderColor: COLORS.grey,
+       borderWidth: 0.5,
+       margin: 5,
+       justifyContent: 'center',
+       alignItems: 'center'
+       
+   },
+   avatarImage:{
+       width: 80,
+       height: 80,
+   },
+   modalFooter:{
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        marginTop: 20
+   },
+   cancelButton:{
+      width: 100,
+      backgroundColor: COLORS.blue,
+      padding: 12,
+      borderRadius: 20
+   },
+   buttonText:{ textAlign: 'center', color: COLORS.white},
+   saveButton:{
+      width: 100,
+      backgroundColor: COLORS.darkPink,
+      padding: 12,
+      borderRadius: 20
+   },
 })
 
 export default STYLES;
