@@ -271,8 +271,6 @@ const STYLES = StyleSheet.create({
    avatarItemStyle:{
        flex:1,
        flexDirection: 'row',
-       borderColor: COLORS.grey,
-       borderWidth: 0.5,
        margin: 5,
        justifyContent: 'center',
        alignItems: 'center'

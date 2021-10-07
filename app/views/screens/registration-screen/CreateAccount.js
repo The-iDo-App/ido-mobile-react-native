@@ -11,6 +11,7 @@ import {Feather, FontAwesome, AntDesign} from '@expo/vector-icons';
 import COLORS from "../../../src/consts/colors";
 
 
+
 const avatarList = [
     {key: 1, avatar: require("./Avatar/artman.png")},
     {key: 2, avatar: require("./Avatar/artwoman.png")},
@@ -39,10 +40,26 @@ const avatarList = [
 const numberColumns = 3;
 const WIDTH = Dimensions.get('window').width;
 
+const Item =({item, onPress, borderColor, borderWidth, icon}) => {
+    return(
+    <TouchableOpacity onPress={onPress}>
+            
+            <View style={[STYLES.avatarItemStyle, borderColor, borderWidth]}>
+            
+                    <Image source={item.avatar} style={STYLES.avatarImage}/>
+                    <FontAwesome name={icon} size={20} style={{position:"absolute", top: 0, left: 0, color: "green"}}/>
+            </View>
+    </TouchableOpacity>
+    )
+}
+
+
+
 export default function CreateAccount({navigation}) { 
   const [visible, setVisible] = useState(false);
   //const [image,  setImage] = useState(null);
   const [selectImage, setSelectImage] = useState(null);
+
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
@@ -91,12 +108,21 @@ export default function CreateAccount({navigation}) {
         setSelectImage({localUri:picker.uri});
         hideModal();
         console.log(picker);
-   
+       
     }
     
    
-
-
+    //avatar save
+    const savePhoto = () => {
+        
+       
+        console.log("photo saved!");
+        hideModal();
+        
+        
+    }
+   
+   
     return (
         <SafeAreaView style={STYLES.regWrapper}>
             <StatusBar />
@@ -117,7 +143,7 @@ export default function CreateAccount({navigation}) {
                         <View style={STYLES.imageWrapper}>
                             {
                                 //if setSelectedImage !== null
-                                selectImage !== null ? 
+                                selectImage !== null? 
                                 //selected photo or avatar
                                 (<Image source={{uri:(selectImage.localUri !== null) ? selectImage.localUri : 'https://image.shutterstock.com/image-vector/dots-letter-c-logo-design-260nw-551769190.jpg' }} resizeMode={"cover"} style={{height: 150, width: 150, borderRadius: 100}} />)
                                 //else
@@ -185,22 +211,27 @@ export default function CreateAccount({navigation}) {
                                                 <FlatList
                                                     scrollEnabled={true}
                                                     data={formatData(avatarList, numberColumns)}
-                                                    renderItem={({item, index}) => {
+                                                    renderItem={({item}) => {
+                                                        const borderColor = item.key === selectImage ?  COLORS.darkPink : COLORS.grey; 
+                                                        const borderWidth = item.key === selectImage ?  0.5 : 0.5;
+                                                        const icon = item.key === selectImage ? "check-circle" : null ;
                                                         if (item.empty){
                                                             return(
                                                                 <View style={{display: 'none'}}></View>
                                                             )
                                                         }
                                                         return (
-                                                            <TouchableOpacity>
-                                                                <View style={STYLES.avatarItemStyle}>
-                                                                     <Image source={item.avatar} style={STYLES.avatarImage}/>
-                                                                </View>
-                                                            </TouchableOpacity>
+                                                            <Item item={item}
+                                                            onPress={()=>setSelectImage(item.key)}
+                                                            icon={icon}
+                                                            borderColor={{borderColor}}
+                                                            borderWidth={{borderWidth}}
+                                                            />
                                                         )
                                                     }}
-                                                    keyExtractor={(item, index)=> index.toString()}
+                                                    keyExtractor={(item)=> item.key}
                                                     numColumns={numberColumns}
+                                                    extraData={selectImage}
                                                 />
                                             </View>
                                         </View>
@@ -212,7 +243,7 @@ export default function CreateAccount({navigation}) {
                                                 <Text style={STYLES.buttonText}>Cancel</Text>
                                             </View>
                                         </TouchableOpacity>
-                                         <TouchableOpacity>
+                                         <TouchableOpacity onPress={savePhoto}>
                                             <View style={STYLES.saveButton}>
                                                 <Text style={STYLES.buttonText}>Save</Text>
                                             </View>
