@@ -299,6 +299,18 @@ const STYLES = StyleSheet.create({
       padding: 12,
       borderRadius: 20
    },
+   formWrapper:{flex:1,width: 300, paddingHorizontal: 10},
+   labelWrapper:{flex:1, flexDirection: 'row'},
+   inputWrapper:{flex:1, flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, marginBottom: 20},
+   nameWrapper:{width: 130},
+   inputTextWrapper:{borderBottomColor: COLORS.grey, borderBottomWidth: 0.5},
+   labelText:{color: COLORS.blue, fontSize:18,},
+   underText:{color: COLORS.blue, fontSize:12, fontWeight: '300', opacity: 0.6},
+   inputText:{fontSize: 18, color: COLORS.grey,},
+   birthdateWrapper:{flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 0.6, borderBottomColor: COLORS.grey, alignItems: 'center', marginTop: 5, marginBottom: 20},
+   gender: {textTransform: 'uppercase',  textAlign: 'center'},
+   nextButton:{paddingVertical: 20, marginTop: 40, width: 280, backgroundColor: COLORS.lightPink, justifyContent: 'center', borderRadius: 40},
+   nextText:{textAlign: 'center', color: COLORS.white, fontSize: 16}
 })
 
 export default STYLES;

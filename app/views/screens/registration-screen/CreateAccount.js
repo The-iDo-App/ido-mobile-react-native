@@ -1,10 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-import {View, Text, ImageBackground, Image, Platform, FlatList, Dimensions, LogBox} from 'react-native';
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import {View, Text, ImageBackground, Image, Platform, FlatList, Dimensions, LogBox, TextInput, KeyboardAvoidingView, Keyboard, Pressable, Touchable, VirtualizedList} from 'react-native';
+import { ScrollView, TouchableOpacity, TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { Button, Modal, Portal , Provider} from 'react-native-paper';
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as ImagePicker from 'expo-image-picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import SwitchSelector from "react-native-switch-selector";
 import Constants from 'expo-constants';
 import STYLES from '../../../src/styles';
 import {Feather, FontAwesome, AntDesign} from '@expo/vector-icons';
@@ -37,6 +39,9 @@ const avatarList = [
     {key: 22, avatar: require("./Avatar/Asset-180.png")},
 ]
 
+
+
+
 const numberColumns = 3;
 const WIDTH = Dimensions.get('window').width;
 
@@ -55,10 +60,18 @@ const Item =({item, onPress, borderColor, borderWidth, icon}) => {
 
 
 
+
 export default function CreateAccount({navigation}) { 
   const [visible, setVisible] = useState(false);
   //const [image,  setImage] = useState(null);
   const [selectImage, setSelectImage] = useState(null);
+  const [text, onChangeText] = React.useState("");
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+  const [birthDate, setBirthDate] = useState("MM / DD / YYYY");
+  const [gender, setGender] = useState("");
+    
 
 
   const showModal = () => setVisible(true);
@@ -121,7 +134,35 @@ export default function CreateAccount({navigation}) {
         
         
     }
-   
+
+    // birthdate
+    const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+
+    let tempDate = new Date(currentDate);
+    let fDate = (tempDate.getMonth() + 1) + " " + '/' + tempDate.getDate()  + " "  + '/' + tempDate.getFullYear();
+
+    setBirthDate(fDate);
+
+    //console.log(fDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode('date');
+  };
+
+  // gender
+  const switchGender = (gender) => {
+      setGender({gender: gender});
+  }
+ 
    
     return (
         <SafeAreaView style={STYLES.regWrapper}>
@@ -138,6 +179,7 @@ export default function CreateAccount({navigation}) {
                          <Text style={STYLES.createAccountTitleText}>Let's set you up an account</Text>
                          <Text style={STYLES.createAccountDesText}>Upload your photo or select with the available avatars</Text>
                     </View>
+                    {/*Upload image or avatar*/}
                     <View style={STYLES.choosePhotoWrapper}>
                         
                         <View style={STYLES.imageWrapper}>
@@ -161,23 +203,101 @@ export default function CreateAccount({navigation}) {
                             </View>
                         </TouchableOpacity>
 
-                                
-                         
-                           
-                           {/*<Image source={require('../../../src/assets/Avatar PNG/Asset 156.png')}   style={{width: 100, height: 100}}/> */}
                        
                     </View>
+                   
 
-                            
+                    <View style={STYLES.formWrapper}>
+                      
+                        {/*Form (First name, last name, nickname*/}
+                        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{flex: 1,}}>
+                            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                                 <View style={STYLES.labelWrapper}>
+                                    <Text style={STYLES.labelText}>My name is</Text>
+                                </View>
+                                <View style={STYLES.inputWrapper}>
+                                    <View style={STYLES.nameWrapper}>
+                                        <View style={STYLES.inputTextWrapper}>
+                                            <TextInput placeholder="John" autoCapitalize="words" placeholderTextColor={COLORS.grey} onChangeText={onChangeText} style={STYLES.inputText} />
+                                        </View>
+                                        <Text style={STYLES.underText}>First name</Text>
+                                    </View>
+                                    <View style={STYLES.nameWrapper}>
+                                        <View style={STYLES.inputTextWrapper}>
+                                            <TextInput placeholder="Doe" autoCapitalize="words" placeholderTextColor={COLORS.grey} onChangeText={onChangeText} style={STYLES.inputText}/>
+                                        </View>
+                                        <Text style={STYLES.underText}>Last name</Text>
+                                    </View>
+                                </View>
+
+                                <View style={STYLES.labelWrapper}>
+                                    <Text style={STYLES.labelText}>You can call me</Text>
+                                </View>
+                        
+                                <View style={{marginTop: 10, marginBottom: 20}}>
+                                    <View style={{width: 280, borderBottomColor: COLORS.grey, borderBottomWidth: 0.6}}>
+                                        <TextInput textContent="nickname" placeholder="JD" placeholderTextColor={COLORS.grey} onChangeText={onChangeText} style={{fontSize: 18, color: COLORS.grey}} autoCapitalize="words"/>
+                                    </View>
+                                    <Text style={STYLES.underText}>Nickname</Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                             
+                        </KeyboardAvoidingView>
+
+                         {/*Form (Birthdate)*/}
+                         <View style={STYLES.birthdayWrapper}>
+                             <Text style={STYLES.labelText}>My birthday is on</Text>
+                             <View style={STYLES.birthdateWrapper}>
+                                 <Text style={STYLES.inputText}>{birthDate}</Text>
+                                 <TouchableOpacity onPress={showDatepicker}>
+                                     <FontAwesome name="calendar" color={COLORS.blue} size={18} style={{marginTop: 5, marginBottom: 5}} />
+                                 </TouchableOpacity>
+                                   
+                             </View>
+                              {show && (
+                                    <DateTimePicker
+                                    testID="dateTimePicker"
+                                    value={date}
+                                    mode={mode}
+                                    display="calendar"
+                                    onChange={onChange}
+                                    maximumDate={new Date(2003, 12, 31)}
+                                    themeVariant="light"
+                                    />
+                                )}
+                         </View>
+                         {/*Form (Biological Gender)*/}
+                         <View style={STYLES.genderWrapper}>
+                             <Text style={STYLES.labelText}>I am a</Text>
+                                <View style={{marginTop: 15}}></View>
+                                 <SwitchSelector 
+                                    textColor = {COLORS.white}
+                                    buttonColor = {COLORS.darkPink}
+                                    borderColor = {COLORS.grey}
+                                    backgroundColor = {COLORS.grey}
+                                    borderWidth = {2}
+                                    borderRadius = {10}
+                                    initial={0}
+                                    onPress={(value) => switchGender(value)}
+                                    options={[
+                                        {label: "Woman", value:"woman"},
+                                        {label: "Man", value: "man"}
+                                    ]}
+                                    
+                                 />
+                           
+                             
+                         </View>
+
+                                                    
+                    </View>
+
                                         
-                            
-                         
-
-                    {
-                        /* <TouchableOpacity onPress={()=>navigation.navigate('Sexuality')}>
-                        <Text>Next</Text>
-                    </TouchableOpacity>*/
-                    }
+                
+                    <TouchableOpacity onPress={()=>navigation.navigate('Sexuality')} style={STYLES.nextButton}>
+                        <Text style={STYLES.nextText}>Next</Text>
+                    </TouchableOpacity>
+                    
                     
                     
                 </View>
