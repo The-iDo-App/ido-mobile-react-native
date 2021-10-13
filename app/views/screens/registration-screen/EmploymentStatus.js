@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, {useState} from "react";
 import {View, Text, ImageBackground, FlatList} from 'react-native';
+import Checkbox from 'expo-checkbox';
 import { ScrollView, TouchableOpacity  } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import STYLES from '../../../src/styles';
@@ -31,6 +32,7 @@ const Item =({item, onPress, backgroundColor, borderColor, color}) => {
 export default function EmploymentStatus({navigation}) {
    
     const [selectStatus, setSelectStatus] = useState("");
+    const [isSelected, setIsSelected] = useState(false);
 
     return(
         <SafeAreaView style={STYLES.regWrapper}>
@@ -80,14 +82,39 @@ export default function EmploymentStatus({navigation}) {
                     />
 
                     {/*checkbox for terms and conditions*/}
+                    <View>
+                         
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Checkbox
+                                style={STYLES.checkbox}
+                                value={isSelected}
+                                onValueChange={setIsSelected}
+                                color={isSelected ? COLORS.darkPink : undefined}
+                                />
+                            <Text styles={{color:COLORS.grey}}>I agree to iDo application  </Text>
+                            <Text styles={{color: COLORS.blue}}>Terms and Conditions.</Text>
+                        </View>
 
+                    </View>
+                    
 
+                    {
+                        isSelected !== true ?
 
+                        (
+                            <TouchableOpacity style={STYLES.disableButton}>
+                                <Text style={STYLES.nextText}>Submit</Text>
+                            </TouchableOpacity>
+                        )
+                        :
+                        (
+                                <TouchableOpacity style={STYLES.nextButton} onPress={()=>navigation.navigate('EmploymentStatus')}>
+                                    <Text style={STYLES.nextText}>Submit</Text>
+                                </TouchableOpacity>
+                        )
+                    }
 
-
-                    <TouchableOpacity style={STYLES.nextButton} onPress={()=>navigation.navigate('EmploymentStatus')}>
-                        <Text style={STYLES.nextText}>Submit</Text>
-                    </TouchableOpacity>
+                    
                     
                 </View>
             

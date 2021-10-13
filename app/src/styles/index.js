@@ -382,7 +382,12 @@ const STYLES = StyleSheet.create({
        justifyContent: 'center', 
        alignItems: 'center',
        marginBottom: 210
-   }
+   },
+   disableButton:{
+       paddingVertical: 12, marginTop: 40, width: 280, backgroundColor: COLORS.lightPink, justifyContent: 'center', borderRadius: 40, opacity: 0.4
+   },
+   agreement:{color:COLORS.grey},
+   agreementBlue:{color:COLORS.blue}
 })
 
 export default STYLES;

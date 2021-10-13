@@ -82,7 +82,7 @@ export default function Sexuality({navigation}) {
                                                     }}
                         
                         keyExtractor={item=> item.key.toString()}
-                        style={{marginTop: 5, marginBottom: -10}}
+                        style={{marginTop: 5, marginBottom: 9}}
                     />
 
 
