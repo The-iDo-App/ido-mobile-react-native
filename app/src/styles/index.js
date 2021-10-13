@@ -170,9 +170,10 @@ const STYLES = StyleSheet.create({
     createAccountDesText:{
         marginTop: 20,
         textAlign: 'center',
-        fontSize: 12,
+        fontSize: 14,
         fontWeight: '400',
         color: COLORS.grey,
+        opacity: 0.6
     },
     choosePhotoWrapper:{
         marginTop: 10,
@@ -306,11 +307,71 @@ const STYLES = StyleSheet.create({
    inputTextWrapper:{borderBottomColor: COLORS.grey, borderBottomWidth: 0.5},
    labelText:{color: COLORS.blue, fontSize:18,},
    underText:{color: COLORS.blue, fontSize:12, fontWeight: '300', opacity: 0.6},
-   inputText:{fontSize: 18, color: COLORS.grey,},
+   inputText:{fontSize: 18, color: COLORS.blue,},
    birthdateWrapper:{flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 0.6, borderBottomColor: COLORS.grey, alignItems: 'center', marginTop: 5, marginBottom: 20},
    gender: {textTransform: 'uppercase',  textAlign: 'center'},
    nextButton:{paddingVertical: 20, marginTop: 40, width: 280, backgroundColor: COLORS.lightPink, justifyContent: 'center', borderRadius: 40},
-   nextText:{textAlign: 'center', color: COLORS.white, fontSize: 16}
+   nextText:{textAlign: 'center', color: COLORS.white, fontSize: 16},
+   linkWrapper:{
+       flexDirection:  'row', 
+       justifyContent: 'space-between',
+       width: 300,
+       alignItems: 'center',
+       alignSelf: 'center',
+       marginTop: 10,
+    },
+   linkWrapperText:{ fontSize: 16, color: COLORS.grey, opacity: 0.6},
+   sexualityWrapper:{width: 300, justifyContent:  'center', alignItems: 'center', top: -10},
+   sexualityWrapperBigText:{
+       color: COLORS.grey,
+        fontSize: 20,
+        fontWeight: '600',},
+   sexualityWrapperSmallText:{
+       marginTop: 10,
+        textAlign: 'center',
+        fontSize: 14,
+        fontWeight: '400',
+        color: COLORS.grey,
+        opacity: 0.6
+   },
+   chips:{
+       width:  300,
+       justifyContent: 'center',
+       alignItems: 'center',
+       borderWidth: 1,
+       borderRadius: 100,
+       padding: 12, 
+       margin: 5,
+       
+   },
+   chipsText:{
+       textAlign: 'center',
+       fontSize: 16
+   },
+   addressTextTitle:{
+       textAlign: 'left',
+       width: 300,
+       paddingHorizontal: 20,
+       color: COLORS.grey,
+       fontSize: 20,
+       fontWeight: 'bold'
+   },
+   addressWrapper:{
+       paddingHorizontal: 20,
+       paddingVertical: 40,
+       justifyContent: 'center',
+       alignItems: 'center',
+   },
+   addressInputWrapper:{
+        borderBottomColor: COLORS.grey,
+        borderBottomWidth: 1,
+        width: 280,
+        padding: 12,
+        marginBottom: 40,
+   },
+   addressInputText:{
+      fontSize: 18, color: COLORS.blue,
+   },
 })
 
 export default STYLES;
