@@ -45,9 +45,6 @@ export default function EmploymentStatus({navigation}) {
                             <Text style={STYLES.linkWrapperText}>Back</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={()=>navigation.navigate('EmploymentStatus')}>
-                            <Text style={STYLES.linkWrapperText}>Skip</Text>
-                        </TouchableOpacity>
             </View>
                 <View style={STYLES.createAccountWrap}>
                     
@@ -82,10 +79,14 @@ export default function EmploymentStatus({navigation}) {
                         style={{marginTop: 5, marginBottom: -10}}
                     />
 
+                    {/*checkbox for terms and conditions*/}
+
+
+
 
 
                     <TouchableOpacity style={STYLES.nextButton} onPress={()=>navigation.navigate('EmploymentStatus')}>
-                        <Text style={STYLES.nextText}>Next</Text>
+                        <Text style={STYLES.nextText}>Submit</Text>
                     </TouchableOpacity>
                     
                 </View>

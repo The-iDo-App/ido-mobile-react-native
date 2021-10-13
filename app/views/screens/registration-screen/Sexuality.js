@@ -48,7 +48,7 @@ export default function Sexuality({navigation}) {
                             <Text style={STYLES.linkWrapperText}>Back</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={()=>navigation.navigate('EmploymentStatus')}>
+                        <TouchableOpacity onPress={()=>navigation.navigate('Address')}>
                             <Text style={STYLES.linkWrapperText}>Skip</Text>
                         </TouchableOpacity>
             </View>

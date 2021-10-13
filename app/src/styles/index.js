@@ -310,8 +310,8 @@ const STYLES = StyleSheet.create({
    inputText:{fontSize: 18, color: COLORS.blue,},
    birthdateWrapper:{flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 0.6, borderBottomColor: COLORS.grey, alignItems: 'center', marginTop: 5, marginBottom: 20},
    gender: {textTransform: 'uppercase',  textAlign: 'center'},
-   nextButton:{paddingVertical: 20, marginTop: 40, width: 280, backgroundColor: COLORS.lightPink, justifyContent: 'center', borderRadius: 40},
-   nextText:{textAlign: 'center', color: COLORS.white, fontSize: 16},
+   nextButton:{paddingVertical: 12, marginTop: 40, width: 280, backgroundColor: COLORS.lightPink, justifyContent: 'center', borderRadius: 40},
+   nextText:{textAlign: 'center', color: COLORS.white, fontSize: 20},
    linkWrapper:{
        flexDirection:  'row', 
        justifyContent: 'space-between',
@@ -372,6 +372,17 @@ const STYLES = StyleSheet.create({
    addressInputText:{
       fontSize: 18, color: COLORS.blue,
    },
+   locationButton:{
+       marginTop: 50, 
+       padding: 12, 
+       borderColor: COLORS.grey, 
+       borderWidth: 1, 
+       width: 280, 
+       borderRadius: 100, 
+       justifyContent: 'center', 
+       alignItems: 'center',
+       marginBottom: 210
+   }
 })
 
 export default STYLES;
