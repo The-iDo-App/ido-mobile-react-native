@@ -98,21 +98,16 @@ export default function EmploymentStatus({navigation}) {
                     </View>
                     
 
-                    {
-                        isSelected !== true ?
-
-                        (
-                            <TouchableOpacity style={STYLES.disableButton}>
-                                <Text style={STYLES.nextText}>Submit</Text>
-                            </TouchableOpacity>
-                        )
-                        :
-                        (
-                                <TouchableOpacity style={STYLES.nextButton} onPress={()=>navigation.navigate('EmploymentStatus')}>
+                    
+                                                   
+                                <TouchableOpacity style={isSelected === true ? STYLES.nextButton : STYLES.disableButton} 
+                                        disabled={ isSelected === true ? false : true }
+                                        onPress={()=>navigation.navigate('PreferencesOne')}
+                                        
+                                 >
                                     <Text style={STYLES.nextText}>Submit</Text>
                                 </TouchableOpacity>
-                        )
-                    }
+                       
 
                     
                     

@@ -17,6 +17,7 @@
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/stack": "^6.0.7",
     "expo": "~42.0.1",
+    "expo-checkbox": "~1.0.3",
     "expo-constants": "^11.0.2",
     "expo-image-picker": "~10.2.2",
     "expo-linear-gradient": "^9.2.0",
@@ -44,7 +45,7 @@
     "react-native-web": "~0.13.12",
     "reanimated-bottom-sheet": "^1.0.0-alpha.22",
     "request": "^2.79.0",
-    "expo-checkbox": "~1.0.3"
+    "rn-range-slider": "^2.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

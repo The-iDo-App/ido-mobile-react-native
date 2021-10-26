@@ -12,19 +12,22 @@ const STYLES = StyleSheet.create({
         height: 'auto',
     },
     logoWrapper: {
-        paddingVertical: 20,
-        flex: 1.5,
+        display: 'flex',
+        margin: 'auto',
         justifyContent: 'center',
         alignItems: 'center',
-        width: 300,
     },
     logo: {
-        width: 200,
-        height:200,
+        width: 250,
+        height:250,
        
     },
     textWrapper:{
-        marginBottom: 5,
+        display: 'flex',
+        margin: 'auto',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 10,
     },
     textText: {
         fontSize: 18,
@@ -37,14 +40,15 @@ const STYLES = StyleSheet.create({
         flexDirection: 'row',
         alignItems:'center',
         borderBottomWidth: 0.5,
-        width: 300,
+        width: 330,
         borderBottomColor: COLORS.grey,
+
     },
     textInput: {
-        width: 250,
+        width: 280,
         color: COLORS.blue,
         fontSize: 16,
-        padding: 10,
+        padding: 16,
     },
     forgotWrap:{
         width: 300,
@@ -59,7 +63,7 @@ const STYLES = StyleSheet.create({
         padding: 14,
         borderRadius: 40,
         paddingVertical: 10,
-        marginTop: 20,
+        marginTop: 30,
     },
     loginText:{
         textAlign: 'center',
@@ -72,7 +76,7 @@ const STYLES = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginTop: 20,
+        marginTop: 40,
     },
     line1:{
         height: 0.5,
@@ -155,7 +159,7 @@ const STYLES = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingVertical: 40,
-        paddingHorizontal: 20,
+
     },
     createAccountTitleWrap:{
         flex: 1, 
@@ -178,10 +182,9 @@ const STYLES = StyleSheet.create({
     choosePhotoWrapper:{
         marginTop: 10,
         display: 'flex',
-        paddingHorizontal: 20,
         paddingVertical: 30,
         height: 300,
-        width: 300,
+        width: 330,
     },
     imageWrapper:{
         alignSelf: 'center',
@@ -204,10 +207,9 @@ const STYLES = StyleSheet.create({
        flexDirection: 'row',
        justifyContent: 'center',
        alignItems: 'center',
-       padding: 16,
+       padding: 20,
        backgroundColor: COLORS.white, 
-       margin: 10, 
-       width:250, 
+       width:300, 
        alignSelf: 'center',
        
    },
@@ -231,12 +233,13 @@ const STYLES = StyleSheet.create({
    },
    modalHeaderText:{
        color: COLORS.blue,
-       fontSize: 16,
-       padding: 5
+       fontSize: 18,
+       padding: 5,
+       fontWeight: '600',
      
    },
    modalHeaderCloseButton:{
-      fontSize: 16
+      fontSize: 20
    },
    modalContent:{
     overflow: 'scroll',
@@ -254,8 +257,8 @@ const STYLES = StyleSheet.create({
        flexDirection: 'row',
        padding: 12,
        backgroundColor: COLORS.blue,
-       width: 80,
-       height:80,
+       width: 100,
+       height:100,
        margin: 5,
        justifyContent: 'center',
        alignItems: 'center',
@@ -268,6 +271,7 @@ const STYLES = StyleSheet.create({
        flexDirection: 'row',
        justifyContent: 'space-between',
        alignItems: 'center',
+       alignSelf: 'center',
    },
    avatarItemStyle:{
        flex:1,
@@ -278,8 +282,8 @@ const STYLES = StyleSheet.create({
        
    },
    avatarImage:{
-       width: 80,
-       height: 80,
+       width: 100,
+       height: 100,
    },
    modalFooter:{
         flexDirection: 'row',
@@ -288,34 +292,33 @@ const STYLES = StyleSheet.create({
         marginTop: 20
    },
    cancelButton:{
-      width: 100,
+      width: 130,
       backgroundColor: COLORS.blue,
       padding: 12,
-      borderRadius: 20
+      borderRadius: 40
    },
-   buttonText:{ textAlign: 'center', color: COLORS.white},
+   buttonText:{ textAlign: 'center', color: COLORS.white, fontSize: 18},
    saveButton:{
-      width: 100,
+      width: 130,
       backgroundColor: COLORS.darkPink,
       padding: 12,
-      borderRadius: 20
+      borderRadius: 40
    },
-   formWrapper:{flex:1,width: 300, paddingHorizontal: 10},
+   formWrapper:{flex:1,width: 300, marginTop: 20},
    labelWrapper:{flex:1, flexDirection: 'row'},
-   inputWrapper:{flex:1, flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, marginBottom: 20},
+   inputWrapper:{flex:1, flexDirection: 'row', justifyContent: 'space-between', marginTop: 20, marginBottom: 20},
    nameWrapper:{width: 130},
    inputTextWrapper:{borderBottomColor: COLORS.grey, borderBottomWidth: 0.5},
    labelText:{color: COLORS.blue, fontSize:18,},
    underText:{color: COLORS.blue, fontSize:12, fontWeight: '300', opacity: 0.6},
    inputText:{fontSize: 18, color: COLORS.blue,},
-   birthdateWrapper:{flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 0.6, borderBottomColor: COLORS.grey, alignItems: 'center', marginTop: 5, marginBottom: 20},
-   gender: {textTransform: 'uppercase',  textAlign: 'center'},
-   nextButton:{paddingVertical: 12, marginTop: 40, width: 280, backgroundColor: COLORS.lightPink, justifyContent: 'center', borderRadius: 40},
+   birthdateWrapper:{flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 0.6, borderBottomColor: COLORS.grey, alignItems: 'center', marginTop: 10, marginBottom: 30},
+   nextButton:{paddingVertical: 12, marginTop: 40, marginBottom: 40, width: 350, backgroundColor: COLORS.lightPink, justifyContent: 'center', borderRadius: 40, alignSelf: 'center'},
    nextText:{textAlign: 'center', color: COLORS.white, fontSize: 20},
    linkWrapper:{
        flexDirection:  'row', 
        justifyContent: 'space-between',
-       width: 300,
+       width: 360,
        alignItems: 'center',
        alignSelf: 'center',
        marginTop: 10,
@@ -335,7 +338,7 @@ const STYLES = StyleSheet.create({
         opacity: 0.6
    },
    chips:{
-       width:  300,
+       width:  350,
        justifyContent: 'center',
        alignItems: 'center',
        borderWidth: 1,
@@ -351,7 +354,6 @@ const STYLES = StyleSheet.create({
    addressTextTitle:{
        textAlign: 'left',
        width: 300,
-       paddingHorizontal: 20,
        color: COLORS.grey,
        fontSize: 20,
        fontWeight: 'bold'
@@ -361,13 +363,15 @@ const STYLES = StyleSheet.create({
        paddingVertical: 40,
        justifyContent: 'center',
        alignItems: 'center',
+       marginTop: 20
    },
    addressInputWrapper:{
         borderBottomColor: COLORS.grey,
         borderBottomWidth: 1,
-        width: 280,
+        width: 300,
         padding: 12,
         marginBottom: 40,
+        marginTop: 10
    },
    addressInputText:{
       fontSize: 18, color: COLORS.blue,
@@ -377,14 +381,14 @@ const STYLES = StyleSheet.create({
        padding: 12, 
        borderColor: COLORS.grey, 
        borderWidth: 1, 
-       width: 280, 
+       width: 300, 
        borderRadius: 100, 
        justifyContent: 'center', 
        alignItems: 'center',
-       marginBottom: 210
+       marginBottom: 280
    },
    disableButton:{
-       paddingVertical: 12, marginTop: 40, width: 280, backgroundColor: COLORS.lightPink, justifyContent: 'center', borderRadius: 40, opacity: 0.4
+       paddingVertical: 12, marginTop: 40,marginBottom: 40, width: 350, backgroundColor: '#ffcdcc', justifyContent: 'center', borderRadius: 40
    },
    agreement:{color:COLORS.grey},
    agreementBlue:{color:COLORS.blue}

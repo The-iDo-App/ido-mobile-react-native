@@ -5,10 +5,9 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/src/assets/logo1.png",
-    "splash": {
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
+    "platforms":[
+      "android"
+    ],
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -16,16 +15,25 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./app/src/assets/logo1.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "foregroundImage": "./app/src/assets/adaptive-icon.png",
+        "backgroundColor": "#FF6E83"
+      },
+      "package": "com.nsinteriordev.idomobile",
+      "versionCode": 1,
+      "permissions":[
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "VIBRATE",
+        "READ_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "./app/src/assets/logo1.png"
-    }
+    },
+    "description": ""
   }
 }

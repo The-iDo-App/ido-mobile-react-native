@@ -173,7 +173,7 @@ export default function CreateAccount({navigation}) {
             </View>
             
            
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={true}>
                 <View style={STYLES.createAccountWrap}>
                     <View style={STYLES.createAccountTitleWrap}>
                          <Text style={STYLES.createAccountTitleText}>Let's set you up an account</Text>
@@ -235,7 +235,7 @@ export default function CreateAccount({navigation}) {
                                 </View>
                         
                                 <View style={{marginTop: 10, marginBottom: 20}}>
-                                    <View style={{width: 280, borderBottomColor: COLORS.grey, borderBottomWidth: 0.6}}>
+                                    <View style={{width: 300, borderBottomColor: COLORS.grey, borderBottomWidth: 0.5}}>
                                         <TextInput textContent="nickname" placeholder="JD" placeholderTextColor={COLORS.grey} onChangeText={onChangeText} style={{fontSize: 18, color: COLORS.grey}} autoCapitalize="words"/>
                                     </View>
                                     <Text style={STYLES.underText}>Nickname</Text>
@@ -250,7 +250,7 @@ export default function CreateAccount({navigation}) {
                              <View style={STYLES.birthdateWrapper}>
                                  <Text style={STYLES.inputText}>{birthDate}</Text>
                                  <TouchableOpacity onPress={showDatepicker}>
-                                     <FontAwesome name="calendar" color={COLORS.blue} size={18} style={{marginTop: 5, marginBottom: 5}} />
+                                     <FontAwesome name="calendar" color={COLORS.blue} size={30} style={{marginTop: 5, marginBottom: 5}} />
                                  </TouchableOpacity>
                                    
                              </View>
@@ -263,6 +263,7 @@ export default function CreateAccount({navigation}) {
                                     onChange={onChange}
                                     maximumDate={new Date(2003, 12, 31)}
                                     themeVariant="light"
+                                    
                                     />
                                 )}
                          </View>
@@ -271,12 +272,13 @@ export default function CreateAccount({navigation}) {
                              <Text style={STYLES.labelText}>I am a</Text>
                                 <View style={{marginTop: 15}}></View>
                                  <SwitchSelector 
+                                    
                                     textColor = {COLORS.white}
                                     buttonColor = {COLORS.darkPink}
                                     borderColor = {COLORS.grey}
                                     backgroundColor = {COLORS.grey}
                                     borderWidth = {2}
-                                    borderRadius = {10}
+                                    borderRadius = {40}
                                     initial={0}
                                     onPress={(value) => switchGender(value)}
                                     options={[
@@ -294,10 +296,7 @@ export default function CreateAccount({navigation}) {
 
                                         
                 
-                    <TouchableOpacity onPress={()=>navigation.navigate('Sexuality')} style={STYLES.nextButton}>
-                        <Text style={STYLES.nextText}>Next</Text>
-                    </TouchableOpacity>
-                    
+                   
                     
                     
                 </View>
@@ -374,6 +373,10 @@ export default function CreateAccount({navigation}) {
                             </Modal>
                         </Portal>
                     </Provider>
+                     <TouchableOpacity onPress={()=>navigation.navigate('Sexuality')} style={STYLES.nextButton}>
+                        <Text style={STYLES.nextText}>Next</Text>
+                    </TouchableOpacity>
+                    
         </SafeAreaView>
     );
 
