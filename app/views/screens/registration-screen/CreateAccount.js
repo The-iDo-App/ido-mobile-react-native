@@ -235,7 +235,7 @@ export default function CreateAccount({navigation}) {
                                 </View>
                         
                                 <View style={{marginTop: 10, marginBottom: 20}}>
-                                    <View style={{width: 300, borderBottomColor: COLORS.grey, borderBottomWidth: 0.5}}>
+                                    <View style={{width: 350, borderBottomColor: COLORS.grey, borderBottomWidth: 0.5}}>
                                         <TextInput textContent="nickname" placeholder="JD" placeholderTextColor={COLORS.grey} onChangeText={onChangeText} style={{fontSize: 18, color: COLORS.grey}} autoCapitalize="words"/>
                                     </View>
                                     <Text style={STYLES.underText}>Nickname</Text>

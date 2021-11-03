@@ -304,10 +304,10 @@ const STYLES = StyleSheet.create({
       padding: 12,
       borderRadius: 40
    },
-   formWrapper:{flex:1,width: 300, marginTop: 20},
+   formWrapper:{flex:1,width: 330, marginTop: 20},
    labelWrapper:{flex:1, flexDirection: 'row'},
    inputWrapper:{flex:1, flexDirection: 'row', justifyContent: 'space-between', marginTop: 20, marginBottom: 20},
-   nameWrapper:{width: 130},
+   nameWrapper:{width: 150},
    inputTextWrapper:{borderBottomColor: COLORS.grey, borderBottomWidth: 0.5},
    labelText:{color: COLORS.blue, fontSize:18,},
    underText:{color: COLORS.blue, fontSize:12, fontWeight: '300', opacity: 0.6},
@@ -391,7 +391,12 @@ const STYLES = StyleSheet.create({
        paddingVertical: 12, marginTop: 40,marginBottom: 40, width: 350, backgroundColor: '#ffcdcc', justifyContent: 'center', borderRadius: 40
    },
    agreement:{color:COLORS.grey},
-   agreementBlue:{color:COLORS.blue}
+   agreementBlue:{color:COLORS.blue},
+   rangeWrapper:{
+       width: 360, 
+       marginTop: 30,
+       padding: 5
+   }
 })
 
 export default STYLES;

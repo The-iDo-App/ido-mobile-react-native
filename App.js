@@ -16,8 +16,14 @@ import Sexuality from './app/views/screens/registration-screen/Sexuality';
 import EmploymentStatus from './app/views/screens/registration-screen/EmploymentStatus';
 import Address from './app/views/screens/registration-screen/Address';
 import PreferencesOne from './app/views/screens/Preferences/PreferencesOne';
-import PreferencesTwo from './app/views/screens/Preferences/PreferencesTwo';
-import PreferencesThree from './app/views/screens/Preferences/PreferencesThree';
+import Describe from './app/views/screens/Preferences/Describe';
+import SportsInterest from './app/views/screens/Preferences/SportsInterest';
+import HobbyInterest from './app/views/screens/Preferences/HobbyInterest';
+import MusicInterest from './app/views/screens/Preferences/MusicInterest';
+import FilmInterest from './app/views/screens/Preferences/FilmInterest';
+import PetsInterest from './app/views/screens/Preferences/PetsInterest';
+import BookInterest from './app/views/screens/Preferences/BookInterest';
+import FoodInterest from './app/views/screens/Preferences/FoodInterest';
 import Questions from './app/views/screens/Preferences/Questions';
 
 const Stack = createStackNavigator();
@@ -57,8 +63,14 @@ export default function App() {
                 <Stack.Screen name="EmploymentStatus" component={EmploymentStatus}/>
                 <Stack.Screen name="Address" component={Address}/>
                 <Stack.Screen name="PreferencesOne" component={PreferencesOne}/>
-                <Stack.Screen name="PreferencesTwo" component={PreferencesTwo}/>
-                <Stack.Screen name="PreferencesThree" component={PreferencesThree}/>
+                <Stack.Screen name="Describe" component={Describe}/>
+                <Stack.Screen name="SportsInterest" component={SportsInterest} />
+                <Stack.Screen name="HobbyInterest" component={HobbyInterest} />
+                <Stack.Screen name="MusicInterest" component={MusicInterest} />
+                <Stack.Screen name="FilmInterest" component={FilmInterest} />
+                <Stack.Screen name="PetsInterest" component={PetsInterest} />
+                <Stack.Screen name="BookInterest" component={BookInterest} />
+                <Stack.Screen name="FoodInterest" component={FoodInterest} />
                 <Stack.Screen name="Questions" component={Questions}/>
             </Stack.Group>
           </Stack.Navigator>

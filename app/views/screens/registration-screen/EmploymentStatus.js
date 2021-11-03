@@ -90,6 +90,7 @@ export default function EmploymentStatus({navigation}) {
                                 value={isSelected}
                                 onValueChange={setIsSelected}
                                 color={isSelected ? COLORS.darkPink : undefined}
+                    
                                 />
                             <Text styles={{color:COLORS.grey}}>I agree to iDo application  </Text>
                             <Text styles={{color: COLORS.blue}}>Terms and Conditions.</Text>
