@@ -7,6 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import STYLES from '../../../src/styles';
 import {Feather, FontAwesome, AntDesign} from '@expo/vector-icons';
 import COLORS from "../../../src/consts/colors";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
@@ -31,8 +32,16 @@ const Item =({item, onPress, backgroundColor, borderColor, color}) => {
 
 export default function EmploymentStatus({navigation}) {
    
-    const [selectStatus, setSelectStatus] = useState("");
+    const [selectStatus, setSelectStatus] = useState(null);
     const [isSelected, setIsSelected] = useState(false);
+
+    const  registerUser = async() =>{
+        const employement = employmentList[selectStatus].status;
+        // await AsyncStorage.setItem("employment", employement);
+        
+        console.log(employmentList[selectStatus].status);
+        navigation.navigate('PreferencesOne');
+    }
 
     return(
         <SafeAreaView style={STYLES.regWrapper}>
@@ -96,21 +105,13 @@ export default function EmploymentStatus({navigation}) {
                         </View>
 
                     </View>
-                    
 
-                    
-                                                   
-                                <TouchableOpacity style={isSelected === true ? STYLES.nextButton : STYLES.disableButton} 
-                                        disabled={ isSelected === true ? false : true }
-                                        onPress={()=>navigation.navigate('PreferencesOne')}
-                                        
-                                 >
-                                    <Text style={STYLES.nextText}>Submit</Text>
-                                </TouchableOpacity>
-                       
-
-                    
-                    
+                    <TouchableOpacity style={(isSelected === true && selectStatus !== null) ? STYLES.nextButton : STYLES.disableButton} 
+                        disabled={ isSelected === true ? false : true }
+                        onPress={()=> registerUser()}  
+                    >
+                        <Text style={STYLES.nextText}>Submit</Text>
+                    </TouchableOpacity>
                 </View>
             
         </SafeAreaView>

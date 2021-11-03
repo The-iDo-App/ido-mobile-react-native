@@ -8,16 +8,56 @@ import {Feather, FontAwesome, AntDesign} from '@expo/vector-icons';
 import COLORS from "../../../src/consts/colors";
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-location';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 export default function Address({navigation}) {
 
     const [location, setLocation] = useState(null);
+    const [userLocation, setUserLocation]= useState(null);
+    const [longlat, setLonglat] = useState({
+        latitude:'',
+        longitude: ''
+    })
     const [errorMsg, setErrorMsg] = useState(null);
 
-
+    const enableLocation = async()=>{
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+            setErrorMsg('Permission to access location was denied');
+        return;
+        }
     
+        let coords = await Location.getCurrentPositionAsync({});
+        setUserLocation(coords); 
+        
+        setLonglat({...longlat,latitude : userLocation.coords.latitude, longitude : userLocation.coords.longitude});
+        let codedLocation =  await Location.reverseGeocodeAsync({latitude : longlat.latitude,longitude : longlat.longitude}); 
 
 
+        // full address
+        const address = {
+            country: codedLocation[0].country,
+            province: codedLocation[0].subregion,
+            city: codedLocation[0].city,
+            street: codedLocation[0].street,
+            postalCode: codedLocation[0].postalCode,
+            latitude: longlat.latitude,
+            longitude: longlat.longitude,
+        }
+
+        // await AsyncStorage.setItem("city",address.city);
+        // await AsyncStorage.setItem("country",address.country);
+        // await AsyncStorage.setItem("province",address.province);
+        // await AsyncStorage.setItem("street",address.street);
+        // await AsyncStorage.setItem("latitude",address.latitude.toString());
+        // await AsyncStorage.setItem("longitude",address.longitude.toString());
+
+        const currentLocation = `${address.street}, ${address.city}, ${address.province}, ${address.country}`;
+        setLocation(currentLocation);
+        navigation.navigate('EmploymentStatus')
+    }   
+   
     return(
         <SafeAreaView style={STYLES.regWrapper}>
                  <StatusBar /> 
@@ -25,6 +65,7 @@ export default function Address({navigation}) {
                         <ImageBackground source={require('../../../src/assets/logo1.png')} resizeMode="contain" style={STYLES.headerLogo} />
                     </View>
                     {/* Body */}
+
                     <View style={STYLES.linkWrapper}> 
                                 <TouchableOpacity onPress={()=>navigation.goBack()}>
                                     <Text style={STYLES.linkWrapperText}>Back</Text>
@@ -41,7 +82,7 @@ export default function Address({navigation}) {
                     
                             <View style={STYLES.addressInputWrapper}>
 
-                                    <TextInput placeholder="Address" autoCapitalize="words" placeholderTextColor={COLORS.grey} style={STYLES.addressInputText} />
+                                    <TextInput placeholder="Address" autoCapitalize="words" placeholderTextColor={COLORS.grey} style={STYLES.addressInputText} value={location} />
 
                                     {
                                         /* or
@@ -60,12 +101,12 @@ export default function Address({navigation}) {
 
 
                             {/*pag kinlick tong button , dapat maprocess ung "Get location" -> "reverse geocoding" -> "display address"} */ }
-                           <TouchableOpacity>
+                           <TouchableOpacity onPress={()=>enableLocation()}>
                                 <View style={STYLES.locationButton}>
-                                    <Text style={{color: COLORS.grey, fontSize: 16, textAlign: 'center'}}>Enable Location</Text>
+                                    <Text style={{color: COLORS.grey, fontSize: 16, textAlign: 'center'}} >Enable Location</Text>
                                 </View>
                            </TouchableOpacity>
-                 
+                           
                          <TouchableOpacity style={STYLES.nextButton} onPress={()=>navigation.navigate('EmploymentStatus')}>
                             <Text style={STYLES.nextText}>Next</Text>
                         </TouchableOpacity>
