@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import STYLES from '../../src/styles';
 import COLORS from '../../src/consts/colors';
 import {Feather, FontAwesome, AntDesign} from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SignUpPage({navigation}) {
     
@@ -62,6 +63,19 @@ export default function SignUpPage({navigation}) {
             confirmSecureTextEntry: !data.confirmSecureTextEntry,
         });
     }
+
+    const registerButton = async() =>{
+        await AsyncStorage.setItem("email", data.email);
+        await AsyncStorage.setItem("password", data.password);
+
+        // const email = await AsyncStorage.getItem("email");
+        // const password = await AsyncStorage.getItem("password");
+
+        // console.log(email,password)
+        if(data.password === data.confirmPassword)
+            navigation.navigate('CreateAccount')
+    }
+
     return (
         <SafeAreaView style={STYLES.authWrapper}>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -113,11 +127,13 @@ export default function SignUpPage({navigation}) {
                         </View>
                         
                         {/*Log in button*/}
-                        <TouchableOpacity onPress={()=> navigation.navigate('CreateAccount')}>
+                        <TouchableOpacity onPress={()=> registerButton()}>
                             <View style={STYLES.loginBtn}>
                                 <Text style={STYLES.loginText}>REGISTER</Text>
                             </View>
                         </TouchableOpacity>
+
+
                         {/*or log in with*/}
                         <View style={STYLES.orWrap}>
                             <View style={STYLES.line1}></View>

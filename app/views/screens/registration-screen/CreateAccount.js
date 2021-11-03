@@ -11,8 +11,7 @@ import Constants from 'expo-constants';
 import STYLES from '../../../src/styles';
 import {Feather, FontAwesome, AntDesign} from '@expo/vector-icons';
 import COLORS from "../../../src/consts/colors";
-
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const avatarList = [
     {key: 1, avatar: require("./Avatar/artman.png")},
@@ -62,322 +61,336 @@ const Item =({item, onPress, borderColor, borderWidth, icon}) => {
 
 
 export default function CreateAccount({navigation}) { 
-  const [visible, setVisible] = useState(false);
-  //const [image,  setImage] = useState(null);
-  const [selectImage, setSelectImage] = useState(null);
-  const [text, onChangeText] = React.useState("");
-  const [date, setDate] = useState(new Date());
-  const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
-  const [birthDate, setBirthDate] = useState("MM / DD / YYYY");
-  const [gender, setGender] = useState("");
-    
+    const [visible, setVisible] = useState(false);
+    //const [image,  setImage] = useState(null);
+    const [selectImage, setSelectImage] = useState(null);
+    const [date, setDate] = useState(new Date());
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
+    const [birthDate, setBirthDate] = useState("MM / DD / YYYY");
+    const [gender, setGender] = useState("");
+
+    const [data,setData] = useState({
+        firstName: '',
+        lastName: '',
+        nickName: '',
+    });    
 
 
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
-  const containerStyle = {backgroundColor: 'white', padding: 25};
-    
-    useEffect(() => {
-        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-    }, [])
-    useEffect(() => {
+    const showModal = () => setVisible(true);
+    const hideModal = () => setVisible(false);
+    const containerStyle = {backgroundColor: 'white', padding: 25};
+        
+        useEffect(() => {
+            LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+        }, [])
+        useEffect(() => {
 
-        (async () => {
-            if(Platform.OS !== 'web') {
-                const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-                if(status !== 'granted'){
-                    alert('Sorry, we need camera roll permissions to make this work');
+            (async () => {
+                if(Platform.OS !== 'web') {
+                    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+                    if(status !== 'granted'){
+                        alert('Sorry, we need camera roll permissions to make this work');
+                    }
                 }
+            })();
+        }, []);
+
+    const formatData = (avatarList, numberColumns) => {
+            const totalRows =Math.floor(avatarList.length /numberColumns);
+            let totalLastRow = avatarList.length - (totalRows * numberColumns);
+
+            while(totalLastRow !== 0 && totalLastRow !== numberColumns){
+                avatarList.push({key: 'blank', empty: true});
+                totalLastRow++;
             }
-        })();
-    }, []);
 
-  const formatData = (avatarList, numberColumns) => {
-        const totalRows =Math.floor(avatarList.length /numberColumns);
-        let totalLastRow = avatarList.length - (totalRows * numberColumns);
+            return avatarList;
+    }
 
-        while(totalLastRow !== 0 && totalLastRow !== numberColumns){
-            avatarList.push({key: 'blank', empty: true});
-            totalLastRow++;
+        // function ng pickImage()
+        let pickImage = async () => {
+            let picker = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images, 
+                allowsEditing: true,
+                aspect: [1, 1],
+                quality: 1,
+            });
+
+            if(picker.cancelled === true){
+                return;
+            }
+
+            setSelectImage({localUri:picker.uri});
+            hideModal();
+            console.log(picker);
+        
+        }
+        
+    
+        //avatar save
+        const savePhoto = () => {
+            
+        
+            console.log("photo saved!");
+            hideModal();
+            
+            
         }
 
-        return avatarList;
-  }
+        // birthdate
+        const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || date;
+        setShow(Platform.OS === 'ios');
+        setDate(currentDate);
 
-    // function ng pickImage()
-    let pickImage = async () => {
-        let picker = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images, 
-            allowsEditing: true,
-            aspect: [1, 1],
-            quality: 1,
-        });
+        let tempDate = new Date(currentDate);
+        let fDate = (tempDate.getMonth() + 1) + " " + '/' + tempDate.getDate()  + " "  + '/' + tempDate.getFullYear();
 
-        if(picker.cancelled === true){
-            return;
-        }
+        setBirthDate(fDate);
 
-        setSelectImage({localUri:picker.uri});
-        hideModal();
-        console.log(picker);
-       
+        //console.log(fDate);
+    };
+
+    const showMode = (currentMode) => {
+        setShow(true);
+        setMode(currentMode);
+    };
+
+    const showDatepicker = () => {
+        showMode('date');
+    };
+
+    // gender
+    const switchGender = (gender) => {
+        setGender({gender: gender});
     }
     
-   
-    //avatar save
-    const savePhoto = () => {
+    const registerButton = async() =>{
+        // await AsyncStorage.setItem("firstName", data.firstName)
+        // await AsyncStorage.setItem("lastName", data.lastName)
+        // await AsyncStorage.setItem("nickName", data.nickName)
+        // await AsyncStorage.setItem("birthday", birthDate)
+        // await AsyncStorage.setItem("gender", gender.gender)
         
-       
-        console.log("photo saved!");
-        hideModal();
-        
-        
+        // console.log(data.firstName,data.lastName,data.nickName,birthDate,gender.gender)
+        navigation.navigate('Sexuality');   
     }
-
-    // birthdate
-    const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === 'ios');
-    setDate(currentDate);
-
-    let tempDate = new Date(currentDate);
-    let fDate = (tempDate.getMonth() + 1) + " " + '/' + tempDate.getDate()  + " "  + '/' + tempDate.getFullYear();
-
-    setBirthDate(fDate);
-
-    //console.log(fDate);
-  };
-
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  };
-
-  const showDatepicker = () => {
-    showMode('date');
-  };
-
-  // gender
-  const switchGender = (gender) => {
-      setGender({gender: gender});
-  }
- 
-   
-    return (
-        <SafeAreaView style={STYLES.regWrapper}>
-            <StatusBar />
-            
-            <View style={STYLES.header}>
-                <ImageBackground source={require('../../../src/assets/logo1.png')} resizeMode="contain" style={STYLES.headerLogo} />
-            </View>
-            
-           
-            <ScrollView showsVerticalScrollIndicator={true}>
-                <View style={STYLES.createAccountWrap}>
-                    <View style={STYLES.createAccountTitleWrap}>
-                         <Text style={STYLES.createAccountTitleText}>Let's set you up an account</Text>
-                         <Text style={STYLES.createAccountDesText}>Upload your photo or select with the available avatars</Text>
-                    </View>
-                    {/*Upload image or avatar*/}
-                    <View style={STYLES.choosePhotoWrapper}>
-                        
-                        <View style={STYLES.imageWrapper}>
-                            {
-                                //if setSelectedImage !== null
-                                selectImage !== null? 
-                                //selected photo or avatar
-                                (<Image source={{uri:(selectImage.localUri !== null) ? selectImage.localUri : 'https://image.shutterstock.com/image-vector/dots-letter-c-logo-design-260nw-551769190.jpg' }} resizeMode={"cover"} style={{height: 150, width: 150, borderRadius: 100}} />)
-                                //else
-                                :
-                                //default photo 
-                                (<Image source={require('./Avatar/avatar.png')} resizeMode={"cover"} style={{height: 150, width: 150, borderRadius: 100}} />) 
-                            }
-                
-                        </View>
-                        
-                        <TouchableOpacity onPress={showModal}>
-                            <View style={STYLES.addButton}>
-                                <Feather name="plus" size={15} color={COLORS.blue} />
-                                <Text style={STYLES.addText} >  &nbsp;Add an avatar or upload a photo</Text>
-                            </View>
-                        </TouchableOpacity>
-
-                       
-                    </View>
-                   
-
-                    <View style={STYLES.formWrapper}>
-                      
-                        {/*Form (First name, last name, nickname*/}
-                        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{flex: 1,}}>
-                            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                                 <View style={STYLES.labelWrapper}>
-                                    <Text style={STYLES.labelText}>My name is</Text>
-                                </View>
-                                <View style={STYLES.inputWrapper}>
-                                    <View style={STYLES.nameWrapper}>
-                                        <View style={STYLES.inputTextWrapper}>
-                                            <TextInput placeholder="John" autoCapitalize="words" placeholderTextColor={COLORS.grey} onChangeText={onChangeText} style={STYLES.inputText} />
-                                        </View>
-                                        <Text style={STYLES.underText}>First name</Text>
-                                    </View>
-                                    <View style={STYLES.nameWrapper}>
-                                        <View style={STYLES.inputTextWrapper}>
-                                            <TextInput placeholder="Doe" autoCapitalize="words" placeholderTextColor={COLORS.grey} onChangeText={onChangeText} style={STYLES.inputText}/>
-                                        </View>
-                                        <Text style={STYLES.underText}>Last name</Text>
-                                    </View>
-                                </View>
-
-                                <View style={STYLES.labelWrapper}>
-                                    <Text style={STYLES.labelText}>You can call me</Text>
-                                </View>
-                        
-                                <View style={{marginTop: 10, marginBottom: 20}}>
-                                    <View style={{width: 300, borderBottomColor: COLORS.grey, borderBottomWidth: 0.5}}>
-                                        <TextInput textContent="nickname" placeholder="JD" placeholderTextColor={COLORS.grey} onChangeText={onChangeText} style={{fontSize: 18, color: COLORS.grey}} autoCapitalize="words"/>
-                                    </View>
-                                    <Text style={STYLES.underText}>Nickname</Text>
-                                </View>
-                            </TouchableWithoutFeedback>
-                             
-                        </KeyboardAvoidingView>
-
-                         {/*Form (Birthdate)*/}
-                         <View style={STYLES.birthdayWrapper}>
-                             <Text style={STYLES.labelText}>My birthday is on</Text>
-                             <View style={STYLES.birthdateWrapper}>
-                                 <Text style={STYLES.inputText}>{birthDate}</Text>
-                                 <TouchableOpacity onPress={showDatepicker}>
-                                     <FontAwesome name="calendar" color={COLORS.blue} size={30} style={{marginTop: 5, marginBottom: 5}} />
-                                 </TouchableOpacity>
-                                   
-                             </View>
-                              {show && (
-                                    <DateTimePicker
-                                    testID="dateTimePicker"
-                                    value={date}
-                                    mode={mode}
-                                    display="calendar"
-                                    onChange={onChange}
-                                    maximumDate={new Date(2003, 12, 31)}
-                                    themeVariant="light"
-                                    
-                                    />
-                                )}
-                         </View>
-                         {/*Form (Biological Gender)*/}
-                         <View style={STYLES.genderWrapper}>
-                             <Text style={STYLES.labelText}>I am a</Text>
-                                <View style={{marginTop: 15}}></View>
-                                 <SwitchSelector 
-                                    
-                                    textColor = {COLORS.white}
-                                    buttonColor = {COLORS.darkPink}
-                                    borderColor = {COLORS.grey}
-                                    backgroundColor = {COLORS.grey}
-                                    borderWidth = {2}
-                                    borderRadius = {40}
-                                    initial={0}
-                                    onPress={(value) => switchGender(value)}
-                                    options={[
-                                        {label: "Woman", value:"woman"},
-                                        {label: "Man", value: "man"}
-                                    ]}
-                                    
-                                 />
-                           
-                             
-                         </View>
-
-                                                    
-                    </View>
-
-                                        
-                
-                   
+return (
+    <SafeAreaView style={STYLES.regWrapper}>
+        <StatusBar />
+        
+        <View style={STYLES.header}>
+            <ImageBackground source={require('../../../src/assets/logo1.png')} resizeMode="contain" style={STYLES.headerLogo} />
+        </View>
+        
+        
+        <ScrollView showsVerticalScrollIndicator={true}>
+            <View style={STYLES.createAccountWrap}>
+                <View style={STYLES.createAccountTitleWrap}>
+                        <Text style={STYLES.createAccountTitleText}>Let's set you up an account</Text>
+                        <Text style={STYLES.createAccountDesText}>Upload your photo or select with the available avatars</Text>
+                </View>
+                {/*Upload image or avatar*/}
+                <View style={STYLES.choosePhotoWrapper}>
                     
+                    <View style={STYLES.imageWrapper}>
+                        {
+                            //if setSelectedImage !== null
+                            selectImage !== null? 
+                            //selected photo or avatar
+                            (<Image source={{uri:(selectImage.localUri !== null) ? selectImage.localUri : 'https://image.shutterstock.com/image-vector/dots-letter-c-logo-design-260nw-551769190.jpg' }} resizeMode={"cover"} style={{height: 150, width: 150, borderRadius: 100}} />)
+                            //else
+                            :
+                            //default photo 
+                            (<Image source={require('./Avatar/avatar.png')} resizeMode={"cover"} style={{height: 150, width: 150, borderRadius: 100}} />) 
+                        }
+            
+                    </View>
+                    
+                    <TouchableOpacity onPress={showModal}>
+                        <View style={STYLES.addButton}>
+                            <Feather name="plus" size={15} color={COLORS.blue} />
+                            <Text style={STYLES.addText} >  &nbsp;Add an avatar or upload a photo</Text>
+                        </View>
+                    </TouchableOpacity>
+
                     
                 </View>
-            </ScrollView>
-                    <Provider>
-                        <Portal>
-                            <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={STYLES.modalWrapper} children={true}>
-                                
-                                <View style={STYLES.modalHeader}>
-                                    <Text style={STYLES.modalHeaderText}>Upload avatar or photo</Text>
-                                    <TouchableOpacity onPress={hideModal}>
-                                        <Text style={STYLES.modalHeaderCloseButton}>&times;</Text>
-                                    </TouchableOpacity>
-                                </View>
+                
 
-                                <View style={{height: 450}}>
-                                    <ScrollView showsVerticalScrollIndicator={true}>
-                                        <View style={STYLES.modalContent}>
-                                            <View style={STYLES.uploadButtons}>
-                                               
-                                                <TouchableOpacity onPress={pickImage}>
-                                                    <View style={STYLES.cameraUploadButton}>
-                                                            <FontAwesome name="image" size={45} color={'#B4CFE4'}/>
-                                                    </View>
-                                                </TouchableOpacity>
-                                            </View>
-                                            <View style={{borderBottomColor: COLORS.grey, borderBottomWidth: 0.5, marginTop: 20, marginBottom: 20}}></View>
-                                            {/*GALLERY OF AVATARS*/}
-                                            <View style={STYLES.avatarGallery}> 
-                                               
-                                                <FlatList
-                                                    scrollEnabled={true}
-                                                    data={formatData(avatarList, numberColumns)}
-                                                    renderItem={({item}) => {
-                                                        const borderColor = item.key === selectImage ?  COLORS.darkPink : COLORS.grey; 
-                                                        const borderWidth = item.key === selectImage ?  0.5 : 0.5;
-                                                        const icon = item.key === selectImage ? "check-circle" : null ;
-                                                        if (item.empty){
-                                                            return(
-                                                                <View style={{display: 'none'}}></View>
-                                                            )
-                                                        }
-                                                        return (
-                                                            <Item item={item}
-                                                            onPress={()=>setSelectImage(item.key)}
-                                                            icon={icon}
-                                                            borderColor={{borderColor}}
-                                                            borderWidth={{borderWidth}}
-                                                            />
-                                                        )
-                                                    }}
-                                                    keyExtractor={(item)=> item.key}
-                                                    numColumns={numberColumns}
-                                                    extraData={selectImage}
-                                                />
-                                            </View>
-                                        </View>
-                                    </ScrollView>
-                                </View>
-                                <View style={STYLES.modalFooter}>
-                                        <TouchableOpacity onPress={hideModal}>
-                                            <View style={STYLES.cancelButton}>
-                                                <Text style={STYLES.buttonText}>Cancel</Text>
-                                            </View>
-                                        </TouchableOpacity>
-                                         <TouchableOpacity onPress={savePhoto}>
-                                            <View style={STYLES.saveButton}>
-                                                <Text style={STYLES.buttonText}>Save</Text>
-                                            </View>
-                                        </TouchableOpacity>
-                                </View>                           
-                               
-                          
-                            </Modal>
-                        </Portal>
-                    </Provider>
-                     <TouchableOpacity onPress={()=>navigation.navigate('Sexuality')} style={STYLES.nextButton}>
-                        <Text style={STYLES.nextText}>Next</Text>
-                    </TouchableOpacity>
+                <View style={STYLES.formWrapper}>
                     
-        </SafeAreaView>
-    );
+                    {/*Form (First name, last name, nickname*/}
+                    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{flex: 1,}}>
+                        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                                <View style={STYLES.labelWrapper}>
+                                <Text style={STYLES.labelText}>My name is</Text>
+                            </View>
+                            <View style={STYLES.inputWrapper}>
+                                <View style={STYLES.nameWrapper}>
+                                    <View style={STYLES.inputTextWrapper}>
+                                        <TextInput placeholder="John" autoCapitalize="words" onChangeText={(e)=> setData({...data,firstName:e})} placeholderTextColor={COLORS.grey} 
+                                        style={STYLES.inputText} />
+                                    </View>
+                                    <Text style={STYLES.underText}>First name</Text>
+                                </View>
+                                <View style={STYLES.nameWrapper}>
+                                    <View style={STYLES.inputTextWrapper}>
+                                        <TextInput placeholder="Doe" autoCapitalize="words" placeholderTextColor={COLORS.grey} onChangeText={(e)=> setData({...data,lastName:e})}  style={STYLES.inputText}/>
+                                    </View>
+                                    <Text style={STYLES.underText}>Last name </Text>
+                                </View>
+                            </View>
+
+                            <View style={STYLES.labelWrapper}>
+                                <Text style={STYLES.labelText}>You can call me</Text>
+                            </View>
+                    
+                            <View style={{marginTop: 10, marginBottom: 20}}>
+                                <View style={{width: 300, borderBottomColor: COLORS.grey, borderBottomWidth: 0.5}}>
+                                    <TextInput textContent="nickname" placeholder="JD" placeholderTextColor={COLORS.grey}  onChangeText={(e)=> setData({...data,nickName:e})}  style={{fontSize: 18, color: COLORS.grey}} autoCapitalize="words"/>
+                                </View>
+                                <Text style={STYLES.underText}>Nickname </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                        {/* Test */}
+                    </KeyboardAvoidingView>
+
+                        {/*Form (Birthdate)*/}
+                        <View style={STYLES.birthdayWrapper}>
+                            <Text style={STYLES.labelText}>My birthday is on</Text>
+                            <View style={STYLES.birthdateWrapper}>
+                                <Text style={STYLES.inputText}>{birthDate}</Text>
+                                <TouchableOpacity onPress={showDatepicker}>
+                                    <FontAwesome name="calendar" color={COLORS.blue} size={30} style={{marginTop: 5, marginBottom: 5}} />
+                                </TouchableOpacity>
+                                
+                            </View>
+                            {show && (
+                                <DateTimePicker
+                                testID="dateTimePicker"
+                                value={date}
+                                mode={mode}
+                                display="calendar"
+                                onChange={onChange}
+                                maximumDate={new Date(2003, 12, 31)}
+                                themeVariant="light"
+                                
+                                />
+                            )}
+                        </View>
+                        {/*Form (Biological Gender)*/}
+                        <View style={STYLES.genderWrapper}>
+                            <Text style={STYLES.labelText}>I am a</Text>
+                            <View style={{marginTop: 15}}></View>
+                                <SwitchSelector 
+                                
+                                textColor = {COLORS.white}
+                                buttonColor = {COLORS.darkPink}
+                                borderColor = {COLORS.grey}
+                                backgroundColor = {COLORS.grey}
+                                borderWidth = {2}
+                                borderRadius = {40}
+                                initial={0}
+                                onPress={(value) => switchGender(value)}
+                                options={[
+                                    {label: "Woman", value:"woman"},
+                                    {label: "Man", value: "man"}
+                                ]}
+                                
+                                />
+                        
+                            
+                        </View>
+
+                                                
+                </View>
+
+                                    
+            
+                
+                
+                
+            </View>
+        </ScrollView>
+                <Provider>
+                    <Portal>
+                        <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle} style={STYLES.modalWrapper} children={true}>
+                            
+                            <View style={STYLES.modalHeader}>
+                                <Text style={STYLES.modalHeaderText}>Upload avatar or photo</Text>
+                                <TouchableOpacity onPress={hideModal}>
+                                    <Text style={STYLES.modalHeaderCloseButton}>&times;</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                            <View style={{height: 450}}>
+                                <ScrollView showsVerticalScrollIndicator={true}>
+                                    <View style={STYLES.modalContent}>
+                                        <View style={STYLES.uploadButtons}>
+                                            
+                                            <TouchableOpacity onPress={pickImage}>
+                                                <View style={STYLES.cameraUploadButton}>
+                                                        <FontAwesome name="image" size={45} color={'#B4CFE4'}/>
+                                                </View>
+                                            </TouchableOpacity>
+                                        </View>
+                                        <View style={{borderBottomColor: COLORS.grey, borderBottomWidth: 0.5, marginTop: 20, marginBottom: 20}}></View>
+                                        {/*GALLERY OF AVATARS*/}
+                                        <View style={STYLES.avatarGallery}> 
+                                            
+                                            <FlatList
+                                                scrollEnabled={true}
+                                                data={formatData(avatarList, numberColumns)}
+                                                renderItem={({item}) => {
+                                                    const borderColor = item.key === selectImage ?  COLORS.darkPink : COLORS.grey; 
+                                                    const borderWidth = item.key === selectImage ?  0.5 : 0.5;
+                                                    const icon = item.key === selectImage ? "check-circle" : null ;
+                                                    if (item.empty){
+                                                        return(
+                                                            <View style={{display: 'none'}}></View>
+                                                        )
+                                                    }
+                                                    return (
+                                                        <Item item={item}
+                                                        onPress={()=>setSelectImage(item.key)}
+                                                        icon={icon}
+                                                        borderColor={{borderColor}}
+                                                        borderWidth={{borderWidth}}
+                                                        />
+                                                    )
+                                                }}
+                                                keyExtractor={(item)=> item.key}
+                                                numColumns={numberColumns}
+                                                extraData={selectImage}
+                                            />
+                                        </View>
+                                    </View>
+                                </ScrollView>
+                            </View>
+                            <View style={STYLES.modalFooter}>
+                                    <TouchableOpacity onPress={hideModal}>
+                                        <View style={STYLES.cancelButton}>
+                                            <Text style={STYLES.buttonText}>Cancel</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                        <TouchableOpacity onPress={savePhoto}>
+                                        <View style={STYLES.saveButton}>
+                                            <Text style={STYLES.buttonText}>Save</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                            </View>                           
+                            
+                        
+                        </Modal>
+                    </Portal>
+                </Provider>
+                    <TouchableOpacity onPress={()=>registerButton()} style={STYLES.nextButton}>
+                    <Text style={STYLES.nextText}>Next</Text>
+                </TouchableOpacity>
+                
+    </SafeAreaView>
+);
 
 }

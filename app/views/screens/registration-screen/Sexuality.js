@@ -6,6 +6,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import STYLES from '../../../src/styles';
 import {Feather, FontAwesome, AntDesign} from '@expo/vector-icons';
 import COLORS from "../../../src/consts/colors";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 const SexualOrientationModel = [
     {key: 0, orientation: 'Straight'},
@@ -31,10 +33,14 @@ const Item =({item, onPress, backgroundColor, borderColor, color}) => {
 }
 
 export default function Sexuality({navigation}) {
-
     const [selectOrientation, setSelectOrientation] = useState("");
 
-
+    const registerUser = async() =>{
+        const orientation = SexualOrientationModel[selectOrientation].orientation;
+        // await AsyncStorage.setItem("orientation",orientation);
+        
+        navigation.navigate('Address');
+    }
     return(
         <SafeAreaView style={STYLES.regWrapper}>
             
@@ -87,7 +93,7 @@ export default function Sexuality({navigation}) {
 
 
 
-                    <TouchableOpacity style={STYLES.nextButton} onPress={()=>navigation.navigate('Address')}>
+                    <TouchableOpacity style={STYLES.nextButton} onPress={()=> registerUser()}>
                         <Text style={STYLES.nextText}>Next</Text>
                     </TouchableOpacity>
                     
