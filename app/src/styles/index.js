@@ -353,7 +353,7 @@ const STYLES = StyleSheet.create({
    },
    addressTextTitle:{
        textAlign: 'left',
-       width: 300,
+       width: 360,
        color: COLORS.grey,
        fontSize: 20,
        fontWeight: 'bold'
@@ -368,20 +368,20 @@ const STYLES = StyleSheet.create({
    addressInputWrapper:{
         borderBottomColor: COLORS.grey,
         borderBottomWidth: 1,
-        width: 300,
+        width: 360,
         padding: 12,
         marginBottom: 40,
         marginTop: 10
    },
    addressInputText:{
-      fontSize: 18, color: COLORS.blue,
+      fontSize: 16, color: COLORS.blue,
    },
    locationButton:{
-       marginTop: 50, 
+       marginTop: 5, 
        padding: 12, 
        borderColor: COLORS.grey, 
        borderWidth: 1, 
-       width: 300, 
+       width: 360, 
        borderRadius: 100, 
        justifyContent: 'center', 
        alignItems: 'center',
@@ -396,7 +396,25 @@ const STYLES = StyleSheet.create({
        width: 360, 
        marginTop: 30,
        padding: 5
-   }
+   },
+   interestWrapper:{
+      display:'flex', 
+      justifyContent: 'center',
+      alignItems:'center', 
+      alignSelf:  'center', 
+      flexDirection: 'row', 
+      width: 400, 
+      marginTop:80, 
+      flexWrap: 'wrap'
+   },
+   interestText:{
+       color: COLORS.blue, 
+       fontWeight: '800', 
+       fontSize: 20, 
+       textAlign: 'center'
+   },
+  
+   
 })
 
 export default STYLES;

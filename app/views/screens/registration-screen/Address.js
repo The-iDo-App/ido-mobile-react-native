@@ -9,12 +9,26 @@ import COLORS from "../../../src/consts/colors";
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-location';
 
+
+
+const MultilineText = (props) => {
+    return (
+        <TextInput 
+            {...props}
+            editable
+            placeholder="Address"
+            placeholderTextColor={COLORS.grey}
+            style={STYLES.addressInputText}
+        />
+    )
+}
+
 export default function Address({navigation}) {
 
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
 
-
+    const [textValue, textOnChangeText] = useState('');
     
 
 
@@ -35,44 +49,46 @@ export default function Address({navigation}) {
                                 </TouchableOpacity>
                     </View>
 
-                <View style={STYLES.addressWrapper} >
-                    <Text style={STYLES.addressTextTitle}>I live at</Text>
-
-                    
-                            <View style={STYLES.addressInputWrapper}>
-
-                                    <TextInput placeholder="Address" autoCapitalize="words" placeholderTextColor={COLORS.grey} style={STYLES.addressInputText} />
-
-                                    {
-                                        /* or
-
-                                            pag na-set na ung address via enable your location button dapat maging ganto 
-
-                                            <Text style={STYLES.addressInputText}>{address}</Text>
-                                        
-                                        */
-                                    }
-                            </View>
+                    <ScrollView>
+                        <View style={STYLES.addressWrapper} >
+                            <Text style={STYLES.addressTextTitle}>I live at</Text>
 
                             
+                                    <View style={STYLES.addressInputWrapper}>
 
-                            <Text style={STYLES.orText}>OR</Text>
+                                          <MultilineText 
+                                            multiline
+                                            numberOfLines={textValue === '' ? 1 : 3}
+                                            onChangeText={text => textOnChangeText(text)}
+                                            value={textValue}
+                                            
+                                          />
+                                          {/* 
+                                            malalagay ung value ng geocode
+                                            
+                                          */}
 
+                                        
+                                    </View>
 
-                            {/*pag kinlick tong button , dapat maprocess ung "Get location" -> "reverse geocoding" -> "display address"} */ }
-                           <TouchableOpacity>
-                                <View style={STYLES.locationButton}>
-                                    <Text style={{color: COLORS.grey, fontSize: 16, textAlign: 'center'}}>Enable Location</Text>
-                                </View>
-                           </TouchableOpacity>
-                 
-                         <TouchableOpacity style={STYLES.nextButton} onPress={()=>navigation.navigate('EmploymentStatus')}>
-                            <Text style={STYLES.nextText}>Next</Text>
-                        </TouchableOpacity>
-                   
-                   
-                </View>
-         
+                                
+
+                                    {/*pag kinlick tong button , dapat maprocess ung "Get location" -> "reverse geocoding" -> "display address"} */ }
+                                <TouchableOpacity>
+                                        <View style={STYLES.locationButton}>
+                                            <Text style={{color: COLORS.grey, fontSize: 16, textAlign: 'center'}}>Enable Location</Text>
+                                        </View>
+                                </TouchableOpacity>
+                        
+           
+                    
+                        </View>
+                    </ScrollView>
+                                <TouchableOpacity style={STYLES.nextButton} onPress={()=>navigation.navigate('EmploymentStatus')}>
+                                    <Text style={STYLES.nextText}>Next</Text>
+                                </TouchableOpacity>
+                        
+                                            
         </SafeAreaView>
     );
 }
