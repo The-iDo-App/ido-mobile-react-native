@@ -7,9 +7,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import STYLES from '../../../src/styles';
 import {Feather, FontAwesome, AntDesign} from '@expo/vector-icons';
 import COLORS from "../../../src/consts/colors";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-
 
 const employmentList = [
     {key: 0, status: 'Student'},
@@ -32,7 +29,7 @@ const Item =({item, onPress, backgroundColor, borderColor, color}) => {
 
 export default function EmploymentStatus({navigation}) {
    
-    const [selectStatus, setSelectStatus] = useState(null);
+    const [selectStatus, setSelectStatus] = useState("");
     const [isSelected, setIsSelected] = useState(false);
 
     const  registerUser = async() =>{
@@ -42,7 +39,6 @@ export default function EmploymentStatus({navigation}) {
         console.log(employmentList[selectStatus].status);
         navigation.navigate('PreferencesOne');
     }
-
     return(
         <SafeAreaView style={STYLES.regWrapper}>
             
@@ -68,24 +64,21 @@ export default function EmploymentStatus({navigation}) {
                     <FlatList 
                         scrollEnabled={true}
                         data={employmentList}
-                        renderItem={({item}) => {
-                                                const backgroundColor = item.key === selectStatus ? COLORS.darkPink : COLORS.white;
-                                                const borderColor = item.key === selectStatus  ? COLORS.darkPink : COLORS.grey;  
-                                                const color = item.key === selectStatus  ? COLORS.white : COLORS.grey;      
-                                                return (
-                                                       <Item
-                                                        item={item}
-                                                        onPress={()=>setSelectStatus(item.key)}
-                                                        backgroundColor={{backgroundColor}}
-                                                        borderColor={{borderColor}}
-                                                        color={{color}}
-                                                       /> 
-                                                
-                                                        
-                                                        
-                                                        )
-                                                    }}
-                        
+                        renderItem={({item}) => 
+                        {
+                            const backgroundColor = item.key === selectStatus ? COLORS.darkPink : COLORS.white;
+                            const borderColor = item.key === selectStatus  ? COLORS.darkPink : COLORS.grey;  
+                            const color = item.key === selectStatus  ? COLORS.white : COLORS.grey;      
+                            return (
+                                    <Item
+                                    item={item}
+                                    onPress={()=>setSelectStatus(item.key)}
+                                    backgroundColor={{backgroundColor}}
+                                    borderColor={{borderColor}}
+                                    color={{color}}
+                                    /> 
+                                    )
+                        }}
                         keyExtractor={item=> item.key.toString()}
                         style={{marginTop: 5, marginBottom: -10}}
                     />
@@ -99,21 +92,21 @@ export default function EmploymentStatus({navigation}) {
                                 value={isSelected}
                                 onValueChange={setIsSelected}
                                 color={isSelected ? COLORS.darkPink : undefined}
+                    
                                 />
                             <Text styles={{color:COLORS.grey}}>I agree to iDo application  </Text>
                             <Text styles={{color: COLORS.blue}}>Terms and Conditions.</Text>
                         </View>
 
+                    </View>                       
+                        <TouchableOpacity style={isSelected === true ? STYLES.nextButton : STYLES.disableButton} 
+                                disabled={ isSelected === true ? false : true }
+                                onPress={()=>registerUser()}  
+                                
+                            >
+                            <Text style={STYLES.nextText}>Submit</Text>
+                        </TouchableOpacity>
                     </View>
-
-                    <TouchableOpacity style={(isSelected === true && selectStatus !== null) ? STYLES.nextButton : STYLES.disableButton} 
-                        disabled={ isSelected === true ? false : true }
-                        onPress={()=> registerUser()}  
-                    >
-                        <Text style={STYLES.nextText}>Submit</Text>
-                    </TouchableOpacity>
-                </View>
-            
         </SafeAreaView>
     );
 }

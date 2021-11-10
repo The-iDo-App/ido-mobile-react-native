@@ -304,10 +304,10 @@ const STYLES = StyleSheet.create({
       padding: 12,
       borderRadius: 40
    },
-   formWrapper:{flex:1,width: 300, marginTop: 20},
+   formWrapper:{flex:1,width: 330, marginTop: 20},
    labelWrapper:{flex:1, flexDirection: 'row'},
    inputWrapper:{flex:1, flexDirection: 'row', justifyContent: 'space-between', marginTop: 20, marginBottom: 20},
-   nameWrapper:{width: 130},
+   nameWrapper:{width: 150},
    inputTextWrapper:{borderBottomColor: COLORS.grey, borderBottomWidth: 0.5},
    labelText:{color: COLORS.blue, fontSize:18,},
    underText:{color: COLORS.blue, fontSize:12, fontWeight: '300', opacity: 0.6},
@@ -353,7 +353,7 @@ const STYLES = StyleSheet.create({
    },
    addressTextTitle:{
        textAlign: 'left',
-       width: 300,
+       width: 360,
        color: COLORS.grey,
        fontSize: 20,
        fontWeight: 'bold'
@@ -368,20 +368,20 @@ const STYLES = StyleSheet.create({
    addressInputWrapper:{
         borderBottomColor: COLORS.grey,
         borderBottomWidth: 1,
-        width: 300,
+        width: 360,
         padding: 12,
         marginBottom: 40,
         marginTop: 10
    },
    addressInputText:{
-      fontSize: 18, color: COLORS.blue,
+      fontSize: 16, color: COLORS.blue,
    },
    locationButton:{
-       marginTop: 50, 
+       marginTop: 5, 
        padding: 12, 
        borderColor: COLORS.grey, 
        borderWidth: 1, 
-       width: 300, 
+       width: 360, 
        borderRadius: 100, 
        justifyContent: 'center', 
        alignItems: 'center',
@@ -391,7 +391,30 @@ const STYLES = StyleSheet.create({
        paddingVertical: 12, marginTop: 40,marginBottom: 40, width: 350, backgroundColor: '#ffcdcc', justifyContent: 'center', borderRadius: 40
    },
    agreement:{color:COLORS.grey},
-   agreementBlue:{color:COLORS.blue}
+   agreementBlue:{color:COLORS.blue},
+   rangeWrapper:{
+       width: 360, 
+       marginTop: 30,
+       padding: 5
+   },
+   interestWrapper:{
+      display:'flex', 
+      justifyContent: 'center',
+      alignItems:'center', 
+      alignSelf:  'center', 
+      flexDirection: 'row', 
+      width: 400, 
+      marginTop:80, 
+      flexWrap: 'wrap'
+   },
+   interestText:{
+       color: COLORS.blue, 
+       fontWeight: '800', 
+       fontSize: 20, 
+       textAlign: 'center'
+   },
+  
+   
 })
 
 export default STYLES;

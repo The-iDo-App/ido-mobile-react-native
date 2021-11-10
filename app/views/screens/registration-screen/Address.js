@@ -11,15 +11,25 @@ import * as Permissions from 'expo-location';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
+const MultilineText = (props) => {
+    return (
+        <TextInput 
+            {...props}
+            editable
+            placeholder="Address"
+            placeholderTextColor={COLORS.grey}
+            style={STYLES.addressInputText}
+        />
+    )
+}
+
+
 export default function Address({navigation}) {
 
     const [location, setLocation] = useState(null);
     const [userLocation, setUserLocation]= useState(null);
-    const [longlat, setLonglat] = useState({
-        latitude:'',
-        longitude: ''
-    })
     const [errorMsg, setErrorMsg] = useState(null);
+    const [textValue, textOnChangeText] = useState('');
 
     const enableLocation = async()=>{
         let { status } = await Location.requestForegroundPermissionsAsync();
@@ -27,35 +37,43 @@ export default function Address({navigation}) {
             setErrorMsg('Permission to access location was denied');
         return;
         }
-    
-        let coords = await Location.getCurrentPositionAsync({});
-        setUserLocation(coords); 
         
-        setLonglat({...longlat,latitude : userLocation.coords.latitude, longitude : userLocation.coords.longitude});
-        let codedLocation =  await Location.reverseGeocodeAsync({latitude : longlat.latitude,longitude : longlat.longitude}); 
+        try{
+            let coords = await Location.getCurrentPositionAsync({});
+            setTimeout(() => {
+                 setUserLocation(coords); 
+            }, 1000);
+        }catch(err){
+            throw err;
+        }
 
-
-        // full address
-        const address = {
+        try{
+            let codedLocation =  await Location.reverseGeocodeAsync({latitude :  userLocation.coords.latitude,longitude :userLocation.coords.longitude}); 
+            const address = {
             country: codedLocation[0].country,
             province: codedLocation[0].subregion,
             city: codedLocation[0].city,
             street: codedLocation[0].street,
             postalCode: codedLocation[0].postalCode,
-            latitude: longlat.latitude,
-            longitude: longlat.longitude,
+            latitude: userLocation.coords.latitude,
+            longitude: userLocation.coords.longitude,
+            }
+            
+            // full address
+            // await AsyncStorage.setItem("city",address.city);
+            // await AsyncStorage.setItem("country",address.country);
+            // await AsyncStorage.setItem("province",address.province);
+            // await AsyncStorage.setItem("street",address.street);
+            // await AsyncStorage.setItem("latitude",address.latitude.toString());
+            // await AsyncStorage.setItem("longitude",address.longitude.toString());
+            
+            const currentLocation = `${address.street}, ${address.city}, ${address.province}, ${address.country}`;
+            setLocation(currentLocation);
+            navigation.navigate('EmploymentStatus')
         }
-
-        // await AsyncStorage.setItem("city",address.city);
-        // await AsyncStorage.setItem("country",address.country);
-        // await AsyncStorage.setItem("province",address.province);
-        // await AsyncStorage.setItem("street",address.street);
-        // await AsyncStorage.setItem("latitude",address.latitude.toString());
-        // await AsyncStorage.setItem("longitude",address.longitude.toString());
-
-        const currentLocation = `${address.street}, ${address.city}, ${address.province}, ${address.country}`;
-        setLocation(currentLocation);
-        navigation.navigate('EmploymentStatus')
+        catch(err){
+            console.log(err)
+        } 
     }   
    
     return(
@@ -82,17 +100,12 @@ export default function Address({navigation}) {
                     
                             <View style={STYLES.addressInputWrapper}>
 
-                                    <TextInput placeholder="Address" autoCapitalize="words" placeholderTextColor={COLORS.grey} style={STYLES.addressInputText} value={location} />
-
-                                    {
-                                        /* or
-
-                                            pag na-set na ung address via enable your location button dapat maging ganto 
-
-                                            <Text style={STYLES.addressInputText}>{address}</Text>
-                                        
-                                        */
-                                    }
+                                       <MultilineText 
+                                            multiline
+                                            numberOfLines={textValue === '' ? 1 : 3}
+                                            value={location}
+                                            
+                                        />
                             </View>
 
                             
@@ -101,7 +114,7 @@ export default function Address({navigation}) {
 
 
                             {/*pag kinlick tong button , dapat maprocess ung "Get location" -> "reverse geocoding" -> "display address"} */ }
-                           <TouchableOpacity onPress={()=>enableLocation()}>
+                           <TouchableOpacity onPress={enableLocation}>
                                 <View style={STYLES.locationButton}>
                                     <Text style={{color: COLORS.grey, fontSize: 16, textAlign: 'center'}} >Enable Location</Text>
                                 </View>
