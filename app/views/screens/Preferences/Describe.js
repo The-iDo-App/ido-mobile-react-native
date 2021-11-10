@@ -42,28 +42,28 @@ const Describe = ({navigation}) => {
         setBottomSheetShow(false);
     }
 
-    const religionHandleItem = (sign) => {
+    const religionHandleItem = (belief) => {
         
         setReligionBSShow(false);
     }
 
-     const politicalHandleItem = (sign) => {
+     const politicalHandleItem = (view) => {
         
         setPoliticalBSShow(false);
     }
 
-     const smokeHandleItem = (sign) => {
+     const smokeHandleItem = (smoke) => {
         
         setSmokeBSShow(false);
     }
 
 
-     const drinkHandleItem = (sign) => {
+     const drinkHandleItem = (habit) => {
         
         setDrinkBSShow(false);
     }
 
-     const wantKidsHandleItem = (sign) => {
+     const wantKidsHandleItem = (want) => {
         
         setWantKidsBSShow(false);
     }

@@ -18,6 +18,8 @@ const SportsInterest = ({navigation}) => {
 
     //function to select at least 5 sport interest
     const handleSports = (index) => {
+        // max of items to be selected
+        
         let max = 5; 
 
         setSelectedSport(index);
@@ -51,13 +53,7 @@ const SportsInterest = ({navigation}) => {
                             <Text style={STYLES.interestText}>SPORTS</Text>
                         </View>
                     </View>
-                    
-                    {/*Accordion collapse and flatlist (multiple select)*/}
-
-                   
-                        
-
-
+            
                 </View>
                 <View style={STYLES.interestWrapper}>
 
